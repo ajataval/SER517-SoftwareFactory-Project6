@@ -1,0 +1,24 @@
+{
+  "name": "hungryme",
+  "version": "1.0.0",
+  "description": "Mobile App to help users find the perfect food to order",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kedar235/SER517-SoftwareFactory-Project6.git"
+  },
+  "author": "SER518_Team6",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kedar235/SER517-SoftwareFactory-Project6/issues"
+  },
+  "homepage": "https://github.com/kedar235/SER517-SoftwareFactory-Project6#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongodb": "^2.2.23"
+  }
+}
