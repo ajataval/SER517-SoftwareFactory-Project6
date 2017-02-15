@@ -1,17 +1,22 @@
 package loginpage.pradeep.loginpage;
 
 
+
 import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
+
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 
 public class SignUpPage extends AppCompatActivity {
@@ -21,61 +26,81 @@ public class SignUpPage extends AppCompatActivity {
     SQLiteDatabase db;
 
 
-    private  String firstName = null;
-    private  String lastName = null;
-    private  String emailID = null;
-    private  String password = null;
-    private  String confirmpassword = null;
-    private  String phoneNumber = null;
-    private  String securityQuest = null;
+    private  static String firstName = null;
+    private  static String lastName = null;
+    private  static String emailID = null;
+    private  static String password = null;
+    private  static String confirmpassword = null;
+    private  static String phoneNumber = null;
+    private  static String securityQuest = null;
+
     public String storeName;
 
     private Context context;
     private String s;
+
+    private EditText first_name;
+    private EditText last_name;
+    private EditText email;
+    private EditText passwd;
+    private EditText cfrmpswd;
+    private EditText phone_number;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
 
-       context = getApplicationContext();
+        context = getApplicationContext();
         s = String.valueOf(context.getDatabasePath("Anoop.db"));
+
+        first_name = (EditText) findViewById(R.id.firstname);
+        last_name = (EditText) findViewById(R.id.lastname);
+        email = (EditText) findViewById(R.id.email);
+        passwd = (EditText) findViewById(R.id.password);
+        cfrmpswd = (EditText) findViewById(R.id.confpassword);
+        phone_number = (EditText) findViewById(R.id.phoneNumber);
 
         Button create = (Button) findViewById(R.id.confirmsignUp);
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-
-
-                EditText first_name = (EditText) findViewById(R.id.firstname);
                 firstName = first_name.getText().toString();
-                EditText last_name = (EditText) findViewById(R.id.lastname);
                 lastName = last_name.getText().toString();
-                EditText email = (EditText) findViewById(R.id.email);
                 emailID = email.getText().toString();
-                EditText passwd = (EditText) findViewById(R.id.password);
                 password = passwd.getText().toString();
 
-                EditText cfrmpswd = (EditText) findViewById(R.id.confpassword);
+
                 confirmpassword = cfrmpswd.getText().toString();
 
-                EditText phone_number = (EditText) findViewById(R.id.phoneNumber);
+
                 phoneNumber = phone_number.getText().toString();
 
                 EditText security_ques = (EditText) findViewById(R.id.secquest1);
                 securityQuest = security_ques.getText().toString();
 
-                if (!password.equals(confirmpassword)) {
-                    Toast.makeText(getApplicationContext(), "Re-enter password", Toast.LENGTH_LONG).show();
+                boolean validemail = isEmailValid(emailID);
+                boolean validpassword = password.equals(confirmpassword);
+
+                if(!validemail ||!validpassword){
+                    if(!isEmailValid(emailID))
+                        email.setError("Invalid Email");
+
+                    if(!validpassword)
+                        passwd.setError("Invalid Password");
                 }
                 else
                 {
-                    enrtyDatabase();
+                    if(enrtyDatabase())
+                    {
+                        activePage(v);
+                    }else
+                    {
+                        Toast.makeText(getApplicationContext(), "Something went wrong Re-register", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-
 
 
             }
@@ -84,7 +109,17 @@ public class SignUpPage extends AppCompatActivity {
 
     }
 
-    private void enrtyDatabase() {
+    private void activePage(View view) {
+        Intent intent = new Intent(this, ActivityPage.class);
+        startActivity(intent);
+
+    }
+
+    private boolean isEmailValid(String emailID) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(emailID).matches();
+    }
+
+    private boolean enrtyDatabase() {
         try{
             db = getApplicationContext().openOrCreateDatabase(s, MODE_APPEND, null);
             db.beginTransaction();
@@ -142,8 +177,10 @@ public class SignUpPage extends AppCompatActivity {
             db.setTransactionSuccessful();
         } catch (SQLiteException e) {
             System.out.println("SOMETHING WRONG WHILE INSERTING");
+            return false;
         } finally {
             db.endTransaction();
+            return true;
         }
     }
 

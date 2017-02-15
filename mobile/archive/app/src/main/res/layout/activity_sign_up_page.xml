@@ -12,95 +12,101 @@
     tools:context="loginpage.pradeep.loginpage.SignUpPage"
     android:weightSum="1">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:id="@+id/firstname"
-        android:hint="@string/firstname"
-        android:textColor="@color/colorPrimaryDark"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-        android:paddingBottom="10px"
-        />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/firstname"
+            android:hint="@string/firstname"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="#ddffffff"
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:id="@+id/lastname"
-        android:hint="@string/lastname"
-        android:textColor="@color/colorPrimaryDark"
+            />
 
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:id="@+id/email"
-        android:hint="@string/email"
-        android:textColor="@color/colorPrimaryDark"
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"  android:layout_margin="10dp"
+            android:ems="10"
+            android:id="@+id/lastname"
+            android:hint="@string/lastname"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="#ddffffff"
 
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:id="@+id/password"
-        android:hint="@string/password"
-        android:textColor="@color/colorPrimaryDark"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:id="@+id/email"
+            android:hint="@string/email"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="#ddffffff"
 
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:id="@+id/confpassword"
-        android:hint="@string/confirmpassword"
-        android:textColor="@color/colorPrimaryDark"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password"
+            android:hint="@string/password"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="#ddffffff"
 
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:id="@+id/phoneNumber"
-        android:hint ="Phone Number"
-        android:textColor="@color/colorPrimaryDark"
-        tools:ignore="HardcodedText" />
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:id="@+id/confpassword"
+            android:hint="@string/confirmpassword"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="#ddffffff"
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:id="@+id/secquest1"
-        android:hint ="Security question"
-        android:textColor="@color/colorPrimaryDark"
-        tools:ignore="HardcodedText" />
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:id="@+id/phoneNumber"
+            android:hint ="Phone Number"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="#ddffffff"/>
 
-    <Button
-        android:text="Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:id="@+id/confirmsignUp"
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:id="@+id/secquest1"
+            android:hint ="What is your fav food"
+            android:textColor="@color/colorPrimaryDark"
 
-        android:layout_weight="0.06" />
+            android:background="#dddddddd"
+            />
+
+        <Button
+            android:text="Register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/confirmsignUp"
+            />
     </LinearLayout>
-
-
-
-
+</LinearLayout>
