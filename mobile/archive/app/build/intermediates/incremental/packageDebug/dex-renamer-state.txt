@@ -1,7 +1,0 @@
-#Tue Feb 14 17:09:10 MST 2017
-base.0=C\:\\Anoop_Stuff\\Android_Projects\\archive\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_50bac91cfe04fd5f189fcd96cdc7e17d850de7f7
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=C\:\\Anoop_Stuff\\Android_Projects\\archive\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_fa81f70501c965a66ca57d836a1a0574b352b5ec\\classes.dex
-base.1=C\:\\Anoop_Stuff\\Android_Projects\\archive\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_fa81f70501c965a66ca57d836a1a0574b352b5ec
-file.0=C\:\\Anoop_Stuff\\Android_Projects\\archive\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_50bac91cfe04fd5f189fcd96cdc7e17d850de7f7\\classes.dex
