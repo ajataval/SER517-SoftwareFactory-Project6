@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HungryMe1stIteration</string>
+    <string name="email">Email</string>
+    <string name="firstname">FirstName</string>
+    <string name="lastname">LastName</string>
+    <string name="password">Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="send">send</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="disconnect">disconnect</string>
+    <string name="loading">Loading…</string>
+
+    <!-- Sign-in status messages -->
+    <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="signed_out">Signed out</string>
+</resources>

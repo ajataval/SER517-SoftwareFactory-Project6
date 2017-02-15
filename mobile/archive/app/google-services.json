@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "297887236401",
+    "project_id": "hungryme1stiteration"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297887236401:android:8bd2f59e760482e3",
+        "android_client_info": {
+          "package_name": "loginpage.pradeep.loginpage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297887236401-5rl8o0hsj311ts8rshm4h2niv7crp2kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFDI6f5GmiRGrUPRGxrwfw-emoNqCFt3Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

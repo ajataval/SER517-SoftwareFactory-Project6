@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-9.8.0_f415d3dd7cf73390162e6f058b1c4833426a1bfe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a1ed98e01bd58976d80c062fd0ea2968a1ff68a1">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-base-9.8.0_5062264d66bbb2e472f74e2f2ae69f18b983920d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.1_34c750091be0c3709cb76c99f065f4e41363ffee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-9.8.0_ae6546be179117a46cf92c689587465fa4ab93be\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.1_60644e61de53cc22c2173cb6fae85077585d0ecf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_8fcc863fc11ae90e8160654efbc384f1f0c5ed8e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ab5dd27c0dfbafa4b7a89f4bde430ae0dda6fdfc">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_fa81f70501c965a66ca57d836a1a0574b352b5ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.1_cd7e019335f1e3a7c26c840234f83588ae43f777\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca851be26ff89f5b32cc222cee98139fb3fac830">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-9.8.0_a7e7c0235cf12d8660c20bbdf2c4b75c284fb27f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7e92aadd0697922316d1395c1887a23aebec640a">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.8.0_bd36e63cc0c65729a988a13d48ba0c6a7a1c1045\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.1_fb3ce60c24938eda9dc77fdd14ae070f68689f2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\SDK_FOLDER\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_9816cafb02ba392fb80c673880623761212b1ef3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.1_34771a3043042d3674ef1f14a1511970e83d711d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.8.0_c0abbd4414e23927518595716d4d30b6c27007bf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.8.0_a966227c1ceb411ad52eb68ed90391b3929c41ab\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.1_b4c07b78c6c89f9481751247dbf01fbeeeb937eb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_67be832b4429b93aef69e3f7fb293af858171479\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="190a642ba16d1421296a4d794606279b80039c59">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-9.8.0_986ef9c3b8aff128b199807894b0bb5e587e8858\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="53db17db18c478d72927ab1d5f0047c3ea4f885a">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_50bac91cfe04fd5f189fcd96cdc7e17d850de7f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ff04cc3470178a44512624036751a803418c2ca">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-9.8.0_370b9c464289ec367eeaccb0e0f484232267b540\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="C:\Anoop_Stuff\Android_Projects\archive\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.1_3198aad3fb3f726bb271735af33eb2881a2c17ec\classes.dex" />
+    </item>
+
+</items>
