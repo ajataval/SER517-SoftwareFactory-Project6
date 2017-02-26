@@ -3,15 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca851be26ff89f5b32cc222cee98139fb3fac830">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.8.0_b9c009fc1012ba415d5190228fd03927582098c8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -21,48 +12,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.1_bb8b0c129a28203631f534568cfd9766fe48991c/classes.dex" />
+        sha1="4b630471536351be7c3c3100735c75b7ad2cbd84">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.4.0_687c18040e82f7fbd4e5d05d53e7450d8041d4a9/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.0/jars/classes.jar"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="190a642ba16d1421296a4d794606279b80039c59">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.8.0_34f080af581500e8ad925486e7b9a079d1fe4fee/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7e92aadd0697922316d1395c1887a23aebec640a">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.8.0_009706dea62001a9890c93606798267e9f4865cc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.1_1634e615de855e8ee0d9a316754f83984735ef48/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a1ed98e01bd58976d80c062fd0ea2968a1ff68a1">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.8.0_5015b06f3f9ebd10eb8afb3dc19f0b8ade95a438/classes.dex" />
+        sha1="34762013d39dbe6c656050589c44e8b61b9a2c5d">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-common-9.4.0_358dbc9e773c5701be8a25f22ffb651e8ecf6009/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -70,26 +34,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="3f88a994687cafefef1de6cb6691dadd84837950">
+        sha1="dc741d926efcaa9f659467d16a2bd581b4802938">
         <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_04cdec8c7df679e452022649dd9812a5f5a86ddc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.8.0_fb24b49bbfa52c0c882fbef93e5cb64b46fbd3e4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_bd890f4823fabbaae5235de88ad82b7308ace359/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -102,20 +48,11 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_cf3b136460c802bd74b5795fb4a54065707b88ed/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="62a20734cb9c81127315a65387e4d38d55359d88">
+        sha1="896f635713fd80bc908b791f3abd572ead0e53a0">
         <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6164bd80ef34e28c01fafc218c7b79b369269666/classes.dex" />
     </item>
     <item
@@ -129,6 +66,87 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6bc41d9d6fd12d2ef23c785a259011001f4a1a5b">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.4.0_cbfcf29121fb8fa853f11c242240bd1f6bcaccb7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.volley-volley-1.0.0_732d7b2a94de3ad09cc1f44c3950cd4da6d63ed0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.1_bb8b0c129a28203631f534568cfd9766fe48991c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a440fb3fec30ff925e9f601cc458fb6671834cb2">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.4.0_a9b6eac557dce3c207d3acd9a30a02bfe4398b25/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.1_1634e615de855e8ee0d9a316754f83984735ef48/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="18b5697c65c4fe5b7381613b8b8ae9ac52e26fa7">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.4.0_d6a87c0c91807121b856aba6ccaebcb9a2b23c80/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_bd890f4823fabbaae5235de88ad82b7308ace359/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_cf3b136460c802bd74b5795fb4a54065707b88ed/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.4.0_882d558ae69afa4cbe5244dc24ee16b48e21e33f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -138,30 +156,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.8.0/jars/classes.jar"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.8.0_e7794c51f62a7ee9cef8c9cf6d553d693f03659e/classes.dex" />
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.4.0_3ad90ea66c06ddaef1c03e10ebf28f95275fb531/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.8.0/jars/classes.jar"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="9ff04cc3470178a44512624036751a803418c2ca">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.8.0_4472b79552e5669adced730ef8d846f526b293fb/classes.dex" />
+        sha1="4348dd26d83b56c2058b768222c3271bce911724">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.4.0_6a61091363a5eee43ad62d5a7b6ca482e1aba7bb/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.8.0/jars/classes.jar"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.8.0_a89da5e4cfa13be67f33c6856628500892acf3bf/classes.dex" />
+        sha1="58c9f5ee817fdb8b658fd7455fadfb74119f7ee9">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.4.0_5b7a48dc021cd24bc6db2cc849c034382ee2e69d/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -174,12 +192,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.8.0/jars/classes.jar"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
-        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.8.0_519f2144924fbe69a137816168a63c52e0f141b4/classes.dex" />
+        sha1="3b7173b3df4c7029699919414400041f64519e34">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.4.0_f18b9c6b98e7feadbd14651b57d2d9f6facf37c9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.4.0_6b88dc2715d5efa9f3fe60e237326a9193d85ef9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="88848548ab56d4fbf3d2d1b0c85bf1ff9b4c1f4b">
+        <dex dex="/Users/pradeepbalakrishnan/Desktop/HungryMe/SER517-SoftwareFactory-Project6/mobile/archive/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.4.0_61cd4c476b37639e6dd3198eca940e5b0728312b/classes.dex" />
     </item>
     <item
         is-multidex="true"

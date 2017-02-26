@@ -5,8 +5,10 @@ package loginpage.pradeep.loginpage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +30,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 
+
 public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,  View.OnClickListener
     {
 
@@ -41,19 +44,24 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
         GoogleApiClient mGoogleApiClient;
         private static final String TAG = "SigninActivity";
         private static final int RC_SIGN_IN = 9001;
+        Intent signInIntent;
 
-
-    EditText username;
-    EditText password;
-    Button login;
-    TextView fgtpassword ;
-    TextView sign_up;
+        public static final String MyPREFERENCES = "MyPrefs" ;
+        EditText username;
+        EditText password;
+        Button login;
+        TextView fgtpassword ;
+        TextView sign_up;
+        SharedPreferences sharedpreferences;
 
         private SQLiteDatabase db ;
 
 
+
         @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
@@ -70,8 +78,10 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
             signInButton = (SignInButton) findViewById(R.id.sign_in_button);
             signInButton.setOnClickListener(this);
 
-            signOutButton = (Button) findViewById(R.id.signOutButton);
-            signOutButton.setOnClickListener(this);
+//            signOutButton = (Button) findViewById(R.id.signOutButton);
+//            signOutButton.setOnClickListener(this);
+
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
             Context context = getApplicationContext();
             String s = String.valueOf(context.getDatabasePath("Anoop.db"));
@@ -83,9 +93,12 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
                 username = (EditText) findViewById(R.id.username);
                 password = (EditText) findViewById(R.id.password);
 
-
+                SharedPreferences.Editor editor = sharedpreferences.edit();
                 String uname = username.getText().toString();
                 String pword = password.getText().toString();
+
+                editor.putString("Name",uname);
+                editor.commit();
 
                 boolean loginStatus = openDatabase(uname,pword);
 
@@ -101,6 +114,8 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
                 }
             }
         });
+
+
 
         fgtpassword = (TextView) findViewById(R.id.activity_forget_password);
 
@@ -125,15 +140,15 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
             switch (v.getId()){
                 case R.id.sign_in_button:
                     signIn();
-                    onGoogleSignin(v);
                     break;
                 case R.id.signOutButton:
                     signOut();
                     break;
             }
         }
+
         private void signIn(){
-            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+            signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN);
 
         }
@@ -151,7 +166,9 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
             Log.d(TAG, "handleSignInResult:" + result.isSuccess());
             if(result.isSuccess()){
                 GoogleSignInAccount acct = result.getSignInAccount();
-                statusTextView.setText("Hello, " + acct.getDisplayName());
+                System.out.println("Email"+acct.getEmail());
+                onGoogleSignin();
+
             }
             else{
 
@@ -166,7 +183,7 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                 @Override
                 public void onResult(Status status) {
-                    statusTextView.setText("Signed Out");
+
                 }
             });
         }
@@ -188,7 +205,7 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
         startActivity(intent);
     }
 
-    public void onGoogleSignin(View view){
+    public void onGoogleSignin(){
         Intent intent = new Intent(this, ActivityPage.class);
         startActivity(intent);
     }

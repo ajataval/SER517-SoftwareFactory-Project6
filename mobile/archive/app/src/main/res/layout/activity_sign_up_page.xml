@@ -108,5 +108,12 @@
 
             android:id="@+id/confirmsignUp"
             />
+        <TextView
+            android:id="@+id/messageRes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            />
+
     </LinearLayout>
 </LinearLayout>
