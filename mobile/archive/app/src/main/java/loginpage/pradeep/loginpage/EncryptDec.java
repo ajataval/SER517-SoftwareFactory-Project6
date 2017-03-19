@@ -18,6 +18,7 @@ public class EncryptDec extends Activity {
             try {
                 String encryptedData = AESHelper.encrypt(seedValue, MESSAGE);
                 Log.v("EncryptDecrypt", "Encoded String " + encryptedData);
+                Log.v("EncryptDecrypt", "Encoded String " + encryptedData);
                 String decryptedData = AESHelper.decrypt(seedValue, encryptedData);
                 Log.v("EncryptDecrypt", "Decoded String " + decryptedData);
 
