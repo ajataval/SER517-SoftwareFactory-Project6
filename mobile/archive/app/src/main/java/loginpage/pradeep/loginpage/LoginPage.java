@@ -6,9 +6,10 @@ package loginpage.pradeep.loginpage;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +36,8 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
     {
 
 
-
+//        private  long LOCATION_REFRESH_TIME = 10000;
+//        private  float LOCATION_REFRESH_DISTANCE = 50;
         private Cursor c;
         //variables used for google login
         SignInButton signInButton;
@@ -56,10 +58,13 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
 
         private SQLiteDatabase db ;
 
+        public LocationManager mlocationMgr;
+
+
 
 
         @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws SecurityException {
 
 
         super.onCreate(savedInstanceState);
@@ -74,12 +79,11 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
                     .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                     .build();
 
-            statusTextView = (TextView) findViewById(R.id.status_textview);
+
+
+//            statusTextView = (TextView) findViewById(R.id.status_textview);
             signInButton = (SignInButton) findViewById(R.id.sign_in_button);
             signInButton.setOnClickListener(this);
-
-//            signOutButton = (Button) findViewById(R.id.signOutButton);
-//            signOutButton.setOnClickListener(this);
 
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -97,11 +101,13 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
                 String uname = username.getText().toString();
                 String pword = password.getText().toString();
 
+
+
                 editor.putString("Name",uname);
                 editor.commit();
 
                 boolean loginStatus = openDatabase(uname,pword);
-
+                onEncry();
                 if(loginStatus)
                 {
                     Log.d("U have entered",uname);
@@ -188,6 +194,8 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
             });
         }
 
+
+
     private void contentPage(String username) {
 
         Intent intent = new Intent(this,ActivityPage.class);
@@ -206,25 +214,31 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
     }
 
     public void onGoogleSignin(){
+
         Intent intent = new Intent(this, ActivityPage.class);
         startActivity(intent);
     }
 
 
+    public void onEncry(){
+        Intent intent = new Intent(this,EncryptDec.class);
+        startActivity(intent);
+    }
      private boolean openDatabase(String username, String password ){
          String SELECT_SQL = "SELECT EmailID,Password FROM SIGNINFO WHERE EmailID="+"'"+username+"' "+"AND Password="+"'"+password+"'";
          String itemname =null;
          String itmepass = null;
          c = db.rawQuery(SELECT_SQL,null);
+
+
          if(c.moveToFirst())
          {
 
-                  itemname =  c.getString(c.getColumnIndex("EmailID"));
-                    itmepass = c.getString(c.getColumnIndex("Password"));
+             itemname =  c.getString(c.getColumnIndex("EmailID"));
+             itmepass = c.getString(c.getColumnIndex("Password"));
             return  true;
          }
-         System.out.print("Password"+itmepass);
-         System.out.print("Name"+itemname);
+
          return false;
      }
 }

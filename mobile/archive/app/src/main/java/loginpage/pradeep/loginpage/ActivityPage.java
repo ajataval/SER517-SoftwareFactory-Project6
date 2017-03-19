@@ -39,25 +39,25 @@ public class ActivityPage extends LoginPage {
 
         //fetching data from sever
 
-        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
-        servtext = (TextView) findViewById(R.id.status_textview);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, server_url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        servtext.setText(response);
-                        requestQueue.stop();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                servtext.setText("Something went wrong");
-                error.printStackTrace();
-                requestQueue.stop();
-            }
-        }
-        );
-        requestQueue.add(stringRequest);
+//        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+//        servtext = (TextView) findViewById(R.id.status_textview);
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, server_url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        servtext.setText(response);
+//                        requestQueue.stop();
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                servtext.setText("Something went wrong");
+//                error.printStackTrace();
+//                requestQueue.stop();
+//            }
+//        }
+//        );
+//        requestQueue.add(stringRequest);
 
         signOutButton = (Button) findViewById(R.id.signOutButton);
         signOutButton = (Button) findViewById(R.id.gsignOut);

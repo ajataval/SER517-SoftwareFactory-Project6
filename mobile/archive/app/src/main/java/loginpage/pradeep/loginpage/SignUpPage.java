@@ -62,7 +62,7 @@ public class SignUpPage extends AppCompatActivity {
     private EditText cfrmpswd;
     private EditText phone_number;
 
-    final String serverUrl = "https://hungrymeser.herokuapp.com/app/user";
+    final String serverUrl = "https://hungrymeser.herokuapp.com/app/users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,7 +208,7 @@ public class SignUpPage extends AppCompatActivity {
 
             Map<String, String> postreq = new HashMap<>();
             try {
-                jsonObj.put("username",firstName);
+                jsonObj.put("firstname",firstName);
                 jsonObj.put("lastName",lastName);
                 jsonObj.put("username",emailID);
                 jsonObj.put("password",password);
@@ -220,7 +220,7 @@ public class SignUpPage extends AppCompatActivity {
             }
 
             String str = jsonObj.toString();
-            System.out.print("");
+            System.out.print(str);
 
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -229,7 +229,6 @@ public class SignUpPage extends AppCompatActivity {
 
                         @Override
                         public void onResponse(JSONObject res){
-
 
                             System.out.print("Success full entered");
 
@@ -242,7 +241,9 @@ public class SignUpPage extends AppCompatActivity {
                     error.printStackTrace();
 
                 }
-            });
+            }){
+
+            };
             //{
 
 //            //passing some request headers
