@@ -8,15 +8,31 @@ import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignUpPage extends AppCompatActivity {
@@ -46,6 +62,7 @@ public class SignUpPage extends AppCompatActivity {
     private EditText cfrmpswd;
     private EditText phone_number;
 
+    final String serverUrl = "https://hungrymeser.herokuapp.com/app/users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +119,8 @@ public class SignUpPage extends AppCompatActivity {
                     }
                 }
 
+                userRegisteration();
+
 
             }
         });
@@ -120,7 +139,7 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     private boolean enrtyDatabase() {
-        try{
+        try {
             db = getApplicationContext().openOrCreateDatabase(s, MODE_APPEND, null);
             db.beginTransaction();
             try {
@@ -183,6 +202,63 @@ public class SignUpPage extends AppCompatActivity {
             return true;
         }
     }
+
+        private void userRegisteration(){
+            JSONObject jsonObj = new JSONObject();
+
+            Map<String, String> postreq = new HashMap<>();
+            try {
+                jsonObj.put("firstname",firstName);
+                jsonObj.put("lastName",lastName);
+                jsonObj.put("username",emailID);
+                jsonObj.put("password",password);
+                jsonObj.put("phoneNumber",phoneNumber);
+                jsonObj.put("securityQuest",securityQuest);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String str = jsonObj.toString();
+            System.out.print(str);
+
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.POST,serverUrl,jsonObj,
+                    new Response.Listener<JSONObject>(){
+
+                        @Override
+                        public void onResponse(JSONObject res){
+
+                            System.out.print("Success full entered");
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    System.out.print("Something went wrong");
+                    error.printStackTrace();
+
+                }
+            }){
+
+            };
+            //{
+
+//            //passing some request headers
+//            @Override
+//                public Map<String, String> getHeaders() throws AuthFailureError {
+//                HashMap<String, String> headers = new HashMap<String, String>();
+//                headers.put("Content-Type", "application/json; charset=utf-8");
+//                return headers;
+//            }
+//
+//            };
+
+            MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
+    }
+
 
 
 
