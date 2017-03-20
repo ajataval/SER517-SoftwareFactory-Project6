@@ -8,63 +8,310 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class ActivityPage extends LoginPage {
 
     TextView statusTextView;
-
+    String[] restList = new String[0];
     // server url
-    String server_url = "https://hungrymeser.herokuapp.com";
+    String server_url = "http://hungrymeser.herokuapp.com/dummy" ;//"https://hungrymeser.herokuapp.com";
     private TextView servtext;
+    private JSONArray restArray;
+    ListView listView;
+    ArrayAdapter adapter;
+    // String hotelName;
+    //String distance;
+    //String address;
+    JSONObject objIntent;
+
+    public void setrestarray(JSONArray temp){
+
+        restArray = temp;
+    }
 
     protected void onCreate(final Bundle savedInstanceState) {
         Intent intent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
 
+
         //fetching data from sever
+        String[] ma = {"asd","asd"};
+        setAdapter(ma);
 
-//        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
-//        servtext = (TextView) findViewById(R.id.status_textview);
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, server_url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        servtext.setText(response);
-//                        requestQueue.stop();
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                servtext.setText("Something went wrong");
-//                error.printStackTrace();
-//                requestQueue.stop();
-//            }
-//        }
-//        );
-//        requestQueue.add(stringRequest);
 
-        signOutButton = (Button) findViewById(R.id.signOutButton);
-        signOutButton = (Button) findViewById(R.id.gsignOut);
 
-        signOutButton.setOnClickListener(this);
+
+        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+        servtext = (TextView) findViewById(R.id.status_textview);
+
+/*
+        JSONObject jso = new JSONObject();
+
+        try {
+            jso.put("Nombre","Miguel");
+            jso.put("Apellidos", "Garcia");
+            jso.put("Año_nacimiento", 19.90);
+            JSONArray jsa = new JSONArray();
+            JSONObject jsa1 = new JSONObject();
+            jsa1.put("gto","Blur");
+            jsa1.put("rte","Clur");
+            jsa.put(jsa1);
+            jso.put("Nombres_Hijos", jsa);
+
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            System.out.println("NO CREATED");
+            e.printStackTrace();
+        }
+        JSONObject jso1 = new JSONObject();
+
+        try {
+            jso1.put("Nombre","Miguel");
+            jso1.put("Apellidos", "Garcia");
+            jso1.put("Año_nacimiento", 19.90);
+            JSONArray jsa2 = new JSONArray();
+            JSONObject jsa3 = new JSONObject();
+            jsa3.put("gto","Blur");
+            jsa3.put("rte","Clur");
+            jsa2.put(jsa3);
+            jso.put("Nombres_Hijos", jsa2);
+
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            System.out.println("NO CREATED");
+            e.printStackTrace();
+        }
+
+        JSONArray j = new JSONArray();
+        j.put(jso);
+        j.put(jso1);
+
+        String js = j.toString();
+        System.out.println("J TO S  " + js);
+
+        try{
+
+            JSONObject obj = new JSONObject(js);
+            System.out.println("*********************");
+            System.out.println("S TO J  " + obj);
+            System.out.println(obj.getClass() + "JSON");
+
+            //JSONParser parser = new JSONParser();
+            //JSONObject json = (JSONObject) parser.parse(response);
+        }
+
+        catch (JSONException e){
+            //obj = null;
+            System.out.println("JSON ERROR");
+            e.printStackTrace();
+        }
+*/
+
+/*
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        //System.out.println("Response"+response.getClass());
+                        System.out.println("Response"+response);
+                        System.out.println("Class"+response.getClass());
+
+                        try{
+
+                            JSONObject obj = new JSONObject(response);
+                            System.out.println("*********************");
+                            System.out.println(obj);
+                            System.out.println(obj.getClass() + "   JSON");
+
+                            //JSONParser parser = new JSONParser();
+                            //JSONObject json = (JSONObject) parser.parse(response);
+                        }
+
+                        catch (JSONException e){
+                            //obj = null;
+                            System.out.println("JSON ERROR");
+                            e.printStackTrace();
+                        }
+
+
+                        //servtext.setText(response);
+                        requestQueue.stop();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //servtext.setText("Something went wrong");
+                System.out.println("ANOOP");
+                error.printStackTrace();
+                requestQueue.stop();
+            }
+        }
+        );
+
+*/
+
+        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
+
+            @Override
+            public void onResponse(JSONArray response) {
+                System.out.println("JSON Response" + response);
+
+
+
+                setrestarray(response);
+                restArray = response;
+
+                System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
+                System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
+                restList = new String[restArray.length()];
+                for (int i = 0; i < restArray.length(); i++) {
+                    try{
+                        JSONObject jsonobject = restArray.getJSONObject(i);
+                        String hname = jsonobject.getString("hotelname");
+                        restList[i] = hname;
+                        System.out.println(jsonobject);
+
+
+
+                    }
+                    catch (JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+                callme(restArray);
+                //disp(restArray);
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println("ERROR in getting JSON object");
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
+        //LIST VIEW
+        //
+
+
+
+
+        // String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
+        //        "WebOS","Ubuntu","Windows7","Max OS X"};
+
+
+
+
+        //String[] ma = {"ma","sd"};
+
+
+
+
+
+
+        requestQueue.add(JARequest);
+
+        // signOutButton = (Button) findViewById(R.id.signOutButton);
+        //signOutButton = (Button) findViewById(R.id.gsignOut);
+
+        //  signOutButton.setOnClickListener(this);
     }
 
+    public void callme(JSONArray r){
+//        listView.invalidate();
+        setAdapter(restList);
+        adapter.notifyDataSetChanged();
+        try{
+            System.out.println(r.length() + " asdasdasd asdasd");
+        }catch (NullPointerException e){
+            System.out.println("NULL HERE");
+        }
+
+    }
+
+    public void setAdapter(String[] array) {
+        adapter = new ArrayAdapter<String>(this,
+                R.layout.hotel_text_view, array);
+        listView = (ListView) findViewById(R.id.resturant_list);
+        listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                                Object o = listView.getItemAtPosition(i);
+                                                //String s = Integer.toString(i);
+                                                try{
+                                                    System.out.println("ANOOP" + restArray.getJSONObject(i));
+                                                    objIntent = restArray.getJSONObject(i);
+                                                    //hotelName = objIntent.getString("hotelname");
+                                                    //distance = Double.toString(objIntent.getDouble("distance"));
+                                                    //address = objIntent.getString("address");
+
+                                                }catch (JSONException e){
+
+                                                }
+
+                                                //String resturantName = "WORKING";
+                                                Toast.makeText(getApplicationContext(), o.toString() + " ",
+                                                        Toast.LENGTH_LONG).show();
+//                                            Toast.makeText(getApplicationContext(), Selecteditem, Toast.LENGTH_SHORT).show();
+                                                resturantView(objIntent);
+
+                                            }
+                                        }
+        );
+    }
+
+    public void resturantView(JSONObject objIntent){
+        Intent intent = new Intent(this,resturant_Detail.class);
+        intent.putExtra("JSON", objIntent.toString());
+        // intent.putExtra("hotelName", hotelName);
+        //intent.putExtra("distance", distance);
+        //intent.putExtra("address", address);
+        startActivity(intent);
+
+    }
+
+    /*
     public void onClick(View v){
         switch (v.getId()) {
 
@@ -104,7 +351,7 @@ public class ActivityPage extends LoginPage {
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
-
+*/
 
 
 

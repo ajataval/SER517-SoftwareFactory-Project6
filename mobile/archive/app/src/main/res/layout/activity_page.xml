@@ -8,34 +8,58 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="horizontal"
     tools:context="loginpage.pradeep.loginpage.ActivityPage"
     android:weightSum="1">
 
-    <TextView
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/display1"
-        android:text="nextPage"
-        android:layout_weight="0.38" />
-    <!--<TextView-->
-        <!--android:id="@+id/status_textview"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text=""-->
-        <!--android:layout_weight="0.36" />-->
+        android:orientation="horizontal">
+        <!--
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/display1"
+            android:text="nextPage"
+            android:layout_weight="0.38" />
+            -->
+        <TextView
+            android:id="@+id/status_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_weight="0.36" />
+        <!--
 
-    <Button
-        android:id="@+id/signOutButton"
-        android:text="sign Out"
-        android:onClick="logout"
-        android:layout_height="73dp"
-        android:layout_width="wrap_content"/>
 
-    <Button
-        android:id="@+id/gsignOut"
-        android:text="G sign Out"
-        android:onClick="logout"
-        android:layout_height="73dp"
-        android:layout_width="wrap_content" />
+        <Button
+            android:id="@+id/signOutButton"
+            android:text="sign Out"
+            android:onClick="logout"
+            android:layout_height="73dp"
+            android:layout_width="wrap_content"/>
+
+        <Button
+            android:id="@+id/gsignOut"
+            android:text="G sign Out"
+            android:onClick="logout"
+            android:layout_height="73dp"
+            android:layout_width="wrap_content" />
+    -->
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ListView
+            android:id="@+id/resturant_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+
+    </LinearLayout>
 
 </LinearLayout>

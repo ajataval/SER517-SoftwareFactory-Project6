@@ -203,48 +203,48 @@ public class SignUpPage extends AppCompatActivity {
         }
     }
 
-        private void userRegisteration(){
-            JSONObject jsonObj = new JSONObject();
+    private void userRegisteration(){
+        JSONObject jsonObj = new JSONObject();
 
-            Map<String, String> postreq = new HashMap<>();
-            try {
-                jsonObj.put("firstname",firstName);
-                jsonObj.put("lastName",lastName);
-                jsonObj.put("username",emailID);
-                jsonObj.put("password",password);
-                jsonObj.put("phoneNumber",phoneNumber);
-                jsonObj.put("securityQuest",securityQuest);
+        Map<String, String> postreq = new HashMap<>();
+        try {
+            jsonObj.put("firstname",firstName);
+            jsonObj.put("lastName",lastName);
+            jsonObj.put("username",emailID);
+            jsonObj.put("password",password);
+            jsonObj.put("phoneNumber",phoneNumber);
+            jsonObj.put("securityQuest",securityQuest);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-            String str = jsonObj.toString();
-            System.out.print(str);
+        String str = jsonObj.toString();
+        System.out.print(str);
 
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                    (Request.Method.POST,serverUrl,jsonObj,
-                    new Response.Listener<JSONObject>(){
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST,serverUrl,jsonObj,
+                        new Response.Listener<JSONObject>(){
 
-                        @Override
-                        public void onResponse(JSONObject res){
+                            @Override
+                            public void onResponse(JSONObject res){
 
-                            System.out.print("Success full entered");
+                                System.out.print("Success full entered");
 
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-                    System.out.print("Something went wrong");
-                    error.printStackTrace();
+                        System.out.print("Something went wrong");
+                        error.printStackTrace();
 
-                }
-            }){
+                    }
+                }){
 
-            };
-            //{
+        };
+        //{
 
 //            //passing some request headers
 //            @Override
@@ -256,7 +256,7 @@ public class SignUpPage extends AppCompatActivity {
 //
 //            };
 
-            MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
+        MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
     }
 
 
