@@ -4,10 +4,11 @@
     android:id="@+id/activity_login_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/hungryme"
-    android:alpha="0.5"
+    android:background="@drawable/food1"
+    android:alpha="0.8"
     tools:context="loginpage.pradeep.loginpage.LoginPage"
 
     android:weightSum="1">

@@ -112,6 +112,7 @@ public class SignUpPage extends AppCompatActivity {
                 {
                     if(enrtyDatabase())
                     {
+                        Toast.makeText(getApplicationContext(), "Succesfully Registered", Toast.LENGTH_LONG).show();
                         activePage(v);
                     }else
                     {
@@ -129,7 +130,7 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     private void activePage(View view) {
-        Intent intent = new Intent(this, ActivityPage.class);
+        Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
 
     }

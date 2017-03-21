@@ -4,4 +4,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorText">#fafafa</color>
     <color name="colorBg">#95a9a5a5</color>
+    <color name="gold">#d1cb21</color>
+    <color name="white">#ffffff</color>
 </resources>

@@ -9,6 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@drawable/food1"
     tools:context="loginpage.pradeep.loginpage.resturant_Detail">
 
 
@@ -21,14 +22,16 @@
         android:layout_weight="0.2"
         android:layout_marginBottom="1px"
         android:orientation="vertical"
-        android:background="#dddddddd"
+
 
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="HOTEL NAME"
+            android:textStyle="bold"
             android:textAlignment="center"
+            android:background="#f7f4f5"
             android:id="@+id/Hname"/>
 
 
@@ -40,13 +43,15 @@
         android:layout_weight="0.2"
         android:layout_marginBottom="1px"
         android:orientation="vertical"
-        android:background="#dddddddd"
+
 
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ADDRESS"
+            android:textStyle="bold"
+            android:background="#f7f4f5"
             android:id="@+id/Address"/>
 
 
@@ -62,7 +67,10 @@
         <ListView
             android:id="@+id/menu_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:background="#f7f4f5"
+            >
         </ListView>
 
 
