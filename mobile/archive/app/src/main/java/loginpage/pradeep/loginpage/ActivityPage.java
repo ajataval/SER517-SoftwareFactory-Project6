@@ -70,8 +70,9 @@ public class ActivityPage extends LoginPage {
 
 
 
+
         final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
-        servtext = (TextView) findViewById(R.id.status_textview);
+        //UNCOMMENT servtext = (TextView) findViewById(R.id.status_textview);
 
 /*
         JSONObject jso = new JSONObject();

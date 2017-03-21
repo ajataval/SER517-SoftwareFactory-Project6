@@ -24,7 +24,8 @@
         <activity android:name=".ResetPassword" />
         <activity android:name=".SecurityQuestion" />
         <activity android:name=".EncryptDec" />
-        <activity android:name=".resturant_Detail"></activity>
+        <activity android:name=".resturant_Detail" />
+        <activity android:name=".menu_Details"></activity>
     </application>
 
 </manifest>

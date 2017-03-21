@@ -83,7 +83,7 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
 
-        statusTextView = (TextView) findViewById(R.id.status_textview);
+        //UNCOMMENT statusTextView = (TextView) findViewById(R.id.status_textview);
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
 
