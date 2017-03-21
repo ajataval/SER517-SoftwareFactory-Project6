@@ -23,7 +23,13 @@ public class menu_Details extends AppCompatActivity {
         Intent intent = getIntent();
         String Description = intent.getStringExtra("DESC");
         TextView Desc = (TextView) findViewById(R.id.Desc);
-        Desc.setText(Description);
+        //Desc.setText(Description);
+
+        Desc.setText("asdasdasdasdsadasda" +
+                "asdasdasdasdasdasdasd" +
+                "asdasdasdasdasd" +
+                "asdasdasdasdasd" +
+                "asdasdasdasdasdasd");
 
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 

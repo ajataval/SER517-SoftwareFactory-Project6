@@ -3,7 +3,14 @@ package loginpage.pradeep.loginpage;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -42,7 +49,7 @@ public class ActivityPage extends LoginPage {
     TextView statusTextView;
     String[] restList = new String[0];
     // server url
-    String server_url = "http://hungrymeser.herokuapp.com/dummy" ;//"https://hungrymeser.herokuapp.com";
+    String server_url = "http://hungrymeser.herokuapp.com/search?" ;  //"http://hungrymeser.herokuapp.com/dummy" ;//"https://hungrymeser.herokuapp.com";
     private TextView servtext;
     private JSONArray restArray;
     ListView listView;
@@ -51,6 +58,13 @@ public class ActivityPage extends LoginPage {
     //String distance;
     //String address;
     JSONObject objIntent;
+    private LocationManager locationManager;
+    private LocationListener listener;
+    Double longitude;
+    Double latitude;
+
+
+
 
     public void setrestarray(JSONArray temp){
 
@@ -59,19 +73,109 @@ public class ActivityPage extends LoginPage {
 
     protected void onCreate(final Bundle savedInstanceState) {
         Intent intent = getIntent();
+        //latitude = Double.parseDouble(intent.getStringExtra("lat"));
+       // longitude = Double.parseDouble(intent.getStringExtra("lon"));
+       // System.out.println(latitude + "   " + longitude + " asdsad ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
 
+//FETCHING LOCATION BEGINS
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                Log.d("Location",""+location.getLongitude());
+                longitude =location.getLongitude();
+                latitude  = location.getLatitude();
+                latitude = 33.42025778;
+                longitude = -111.9306630;
+                String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
+
+                server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
+                System.out.println(dummy.equals(server_url) + "THIS SHOUDL");
+
+                final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+
+                JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        System.out.println("JSON Response" + response);
+
+
+
+                        setrestarray(response);
+                        restArray = response;
+
+                        System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
+                        System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
+                        restList = new String[restArray.length()];
+                        for (int i = 0; i < restArray.length(); i++) {
+                            try{
+                                JSONObject jsonobject = restArray.getJSONObject(i);
+                                String hname = jsonobject.getString("hotelname");
+                                restList[i] = hname;
+                                System.out.println(jsonobject);
+
+
+
+                            }
+                            catch (JSONException e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                        callme(restArray);
+                        //disp(restArray);
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        System.out.println("ERROR in getting JSON object");
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+                requestQueue.add(JARequest);
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(i);
+            }
+        };
+
+        configure_button();
+
+//FETCHING LOCATION ENDS
 
         //fetching data from sever
-        String[] ma = {"asd","asd"};
+        String[] ma = {" "," "};
         setAdapter(ma);
 
 
 
 
 
-        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+
         //UNCOMMENT servtext = (TextView) findViewById(R.id.status_textview);
 
 /*
@@ -183,52 +287,6 @@ public class ActivityPage extends LoginPage {
 
 */
 
-        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
-
-            @Override
-            public void onResponse(JSONArray response) {
-                System.out.println("JSON Response" + response);
-
-
-
-                setrestarray(response);
-                restArray = response;
-
-                System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
-                System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
-                restList = new String[restArray.length()];
-                for (int i = 0; i < restArray.length(); i++) {
-                    try{
-                        JSONObject jsonobject = restArray.getJSONObject(i);
-                        String hname = jsonobject.getString("hotelname");
-                        restList[i] = hname;
-                        System.out.println(jsonobject);
-
-
-
-                    }
-                    catch (JSONException e){
-                        e.printStackTrace();
-                    }
-
-                }
-                callme(restArray);
-                //disp(restArray);
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                System.out.println("ERROR in getting JSON object");
-                // TODO Auto-generated method stub
-
-            }
-        });
-
-
         //LIST VIEW
         //
 
@@ -248,7 +306,7 @@ public class ActivityPage extends LoginPage {
 
 
 
-        requestQueue.add(JARequest);
+
 
         // signOutButton = (Button) findViewById(R.id.signOutButton);
         //signOutButton = (Button) findViewById(R.id.gsignOut);
@@ -256,10 +314,45 @@ public class ActivityPage extends LoginPage {
         //  signOutButton.setOnClickListener(this);
     }
 
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 10:
+                configure_button();
+                break;
+            default:
+                break;
+        }
+    }
+
+    void configure_button() {
+        // first check for permissions
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                                android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.INTERNET}
+                        , 10);
+            }
+            return;
+        }
+        // this code won'textView execute IF permissions are not allowed, because in the line above there is return statement.
+
+        //noinspection MissingPermission
+        locationManager.requestLocationUpdates("gps", 50000, 0, listener);
+
+
+    }
+
+
     public void callme(JSONArray r){
 //        listView.invalidate();
         setAdapter(restList);
         adapter.notifyDataSetChanged();
+        System.out.println(latitude + " " + longitude + " SUCCESS ");
         try{
             System.out.println(r.length() + " asdasdasd asdasd");
         }catch (NullPointerException e){
@@ -292,8 +385,7 @@ public class ActivityPage extends LoginPage {
                                                 }
 
                                                 //String resturantName = "WORKING";
-                                                Toast.makeText(getApplicationContext(), o.toString() + " ",
-                                                        Toast.LENGTH_LONG).show();
+
 //                                            Toast.makeText(getApplicationContext(), Selecteditem, Toast.LENGTH_SHORT).show();
                                                 resturantView(objIntent);
 
