@@ -23,6 +23,7 @@
         android:layout_marginBottom="1px"
         android:orientation="vertical"
         android:background="@drawable/banner"
+        android:onClick="reloadMenu"
        />
 
     <LinearLayout

@@ -345,26 +345,31 @@ public class ActivityPage extends LoginPage {
                 System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
                 System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
                 restList = new String[restArray.length()];
-                for (int i = 0; i < restArray.length(); i++) {
-                    try{
-                        JSONObject jsonobject = restArray.getJSONObject(i);
-                        String hname = jsonobject.getString("hotelname");
-                        String dist = jsonobject.getString("distance");
-                        restList[i] = hname;
-                        restArrayList.add(new Name_Distance(hname,dist));
-                        System.out.println(jsonobject);
+
+                if(restArray.length() != 0) {
+
+                    for (int i = 0; i < restArray.length(); i++) {
+                        try {
+                            JSONObject jsonobject = restArray.getJSONObject(i);
+                            String hname = jsonobject.getString("hotelname");
+                            String dist = jsonobject.getString("distance");
+                            restList[i] = hname;
+                            restArrayList.add(new Name_Distance(hname, dist));
+                            System.out.println(jsonobject);
 
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
-                    catch (JSONException e){
-                        e.printStackTrace();
-                    }
-
+                    callme(restArray);
+                    //disp(restArray);
                 }
-                callme(restArray);
-                //disp(restArray);
-
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Item not found", Toast.LENGTH_LONG).show();
+                }
 
             }
         }, new Response.ErrorListener() {
