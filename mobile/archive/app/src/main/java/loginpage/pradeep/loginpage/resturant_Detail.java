@@ -24,11 +24,13 @@ public class resturant_Detail extends AppCompatActivity {
     String openNow;
     JSONArray menu;
     ListView listView;
-    ArrayAdapter adapter;
+    //ArrayAdapter adapter;
+    MyAdapter adapter;
     ArrayList<String> menuList = new ArrayList<String>();
     ArrayList<String > descList = new ArrayList<String>();
     String array[];
     String desc;
+    ArrayList<Name_Review> dishArrayList = new ArrayList<Name_Review>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,9 @@ public class resturant_Detail extends AppCompatActivity {
             System.out.println(menu.length()+ "ANOOP" + menu.getJSONObject(0)) ;
 
             for(int i =0; i<menu.length() ;i++){
-                menuList.add(menu.getJSONObject(i).getString("name"));
+                String dish = (menu.getJSONObject(i).getString("name"));
+                String rating = (menu.getJSONObject(i).getString("review"));
+                dishArrayList.add(new Name_Review(dish,rating));
             }
             for(int i =0; i<menu.length() ;i++){
                 descList.add(menu.getJSONObject(i).getString("description"));
@@ -64,8 +68,7 @@ public class resturant_Detail extends AppCompatActivity {
         for(int i=0; i<menuList.size();i++){
             array[i] = menuList.get(i);
         }
-        adapter = new ArrayAdapter<String>(this,
-                R.layout.hotel_text_view, array);
+        adapter = new MyAdapter(this, dishArrayList);
         listView = (ListView) findViewById(R.id.menu_list);
         listView.setAdapter(adapter);
 

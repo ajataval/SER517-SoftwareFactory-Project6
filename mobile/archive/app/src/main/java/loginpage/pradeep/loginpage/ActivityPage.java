@@ -49,11 +49,12 @@ public class ActivityPage extends LoginPage {
     TextView statusTextView;
     String[] restList = new String[0];
     // server url
-    String server_url = "http://hungrymeser.herokuapp.com/search?" ;  //"http://hungrymeser.herokuapp.com/dummy" ;//"https://hungrymeser.herokuapp.com";
+    String server_url = "http://hungrymeser.herokuapp.com/dummy" ;//"https://hungrymeser.herokuapp.com";
     private TextView servtext;
     private JSONArray restArray;
     ListView listView;
-    ArrayAdapter adapter;
+    //ArrayAdapter adapter;
+    MyAdapter adapter;  //TWO
     // String hotelName;
     //String distance;
     //String address;
@@ -62,6 +63,8 @@ public class ActivityPage extends LoginPage {
     private LocationListener listener;
     Double longitude;
     Double latitude;
+    ArrayList<Name_Review> restArrayList = new ArrayList<Name_Review>();
+
 
 
 
@@ -74,8 +77,8 @@ public class ActivityPage extends LoginPage {
     protected void onCreate(final Bundle savedInstanceState) {
         Intent intent = getIntent();
         //latitude = Double.parseDouble(intent.getStringExtra("lat"));
-       // longitude = Double.parseDouble(intent.getStringExtra("lon"));
-       // System.out.println(latitude + "   " + longitude + " asdsad ");
+        // longitude = Double.parseDouble(intent.getStringExtra("lon"));
+        // System.out.println(latitude + "   " + longitude + " asdsad ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
 
@@ -91,58 +94,12 @@ public class ActivityPage extends LoginPage {
                 latitude  = location.getLatitude();
                 latitude = 33.42025778;
                 longitude = -111.9306630;
-                String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
+              // String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
 
-                server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
-                System.out.println(dummy.equals(server_url) + "THIS SHOUDL");
-
-                final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
-
-                JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
-
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        System.out.println("JSON Response" + response);
+               // server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
+               // System.out.println(dummy.equals(server_url) + "THIS SHOUDL");
 
 
-
-                        setrestarray(response);
-                        restArray = response;
-
-                        System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
-                        System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
-                        restList = new String[restArray.length()];
-                        for (int i = 0; i < restArray.length(); i++) {
-                            try{
-                                JSONObject jsonobject = restArray.getJSONObject(i);
-                                String hname = jsonobject.getString("hotelname");
-                                restList[i] = hname;
-                                System.out.println(jsonobject);
-
-
-
-                            }
-                            catch (JSONException e){
-                                e.printStackTrace();
-                            }
-
-                        }
-                        callme(restArray);
-                        //disp(restArray);
-
-
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        System.out.println("ERROR in getting JSON object");
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-                requestQueue.add(JARequest);
             }
 
             @Override
@@ -169,7 +126,61 @@ public class ActivityPage extends LoginPage {
 
         //fetching data from sever
         String[] ma = {" "," "};
-        setAdapter(ma);
+        //setAdapter(ma);
+        ArrayList<Name_Review> temp = new ArrayList<>();
+        temp.add( new Name_Review("asd ", " def"));
+        setAdapter1(temp);
+
+
+        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+        server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
+        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
+
+            @Override
+            public void onResponse(JSONArray response) {
+                System.out.println("JSON Response" + response);
+
+
+
+                setrestarray(response);
+                restArray = response;
+
+                System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
+                System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
+                restList = new String[restArray.length()];
+                for (int i = 0; i < restArray.length(); i++) {
+                    try{
+                        JSONObject jsonobject = restArray.getJSONObject(i);
+                        String hname = jsonobject.getString("hotelname");
+                        String dist = jsonobject.getString("distance");
+                        restList[i] = hname;
+                        restArrayList.add(new Name_Review(hname,dist));
+                        System.out.println(jsonobject);
+
+
+
+                    }
+                    catch (JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+                callme(restArray);
+                //disp(restArray);
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println("ERROR in getting JSON object");
+                // TODO Auto-generated method stub
+
+            }
+        });
+        requestQueue.add(JARequest);
 
 
 
@@ -180,7 +191,6 @@ public class ActivityPage extends LoginPage {
 
 /*
         JSONObject jso = new JSONObject();
-
         try {
             jso.put("Nombre","Miguel");
             jso.put("Apellidos", "Garcia");
@@ -191,15 +201,12 @@ public class ActivityPage extends LoginPage {
             jsa1.put("rte","Clur");
             jsa.put(jsa1);
             jso.put("Nombres_Hijos", jsa);
-
-
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             System.out.println("NO CREATED");
             e.printStackTrace();
         }
         JSONObject jso1 = new JSONObject();
-
         try {
             jso1.put("Nombre","Miguel");
             jso1.put("Apellidos", "Garcia");
@@ -210,32 +217,24 @@ public class ActivityPage extends LoginPage {
             jsa3.put("rte","Clur");
             jsa2.put(jsa3);
             jso.put("Nombres_Hijos", jsa2);
-
-
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             System.out.println("NO CREATED");
             e.printStackTrace();
         }
-
         JSONArray j = new JSONArray();
         j.put(jso);
         j.put(jso1);
-
         String js = j.toString();
         System.out.println("J TO S  " + js);
-
         try{
-
             JSONObject obj = new JSONObject(js);
             System.out.println("*********************");
             System.out.println("S TO J  " + obj);
             System.out.println(obj.getClass() + "JSON");
-
             //JSONParser parser = new JSONParser();
             //JSONObject json = (JSONObject) parser.parse(response);
         }
-
         catch (JSONException e){
             //obj = null;
             System.out.println("JSON ERROR");
@@ -248,29 +247,22 @@ public class ActivityPage extends LoginPage {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         //System.out.println("Response"+response.getClass());
                         System.out.println("Response"+response);
                         System.out.println("Class"+response.getClass());
-
                         try{
-
                             JSONObject obj = new JSONObject(response);
                             System.out.println("*********************");
                             System.out.println(obj);
                             System.out.println(obj.getClass() + "   JSON");
-
                             //JSONParser parser = new JSONParser();
                             //JSONObject json = (JSONObject) parser.parse(response);
                         }
-
                         catch (JSONException e){
                             //obj = null;
                             System.out.println("JSON ERROR");
                             e.printStackTrace();
                         }
-
-
                         //servtext.setText(response);
                         requestQueue.stop();
                     }
@@ -284,7 +276,6 @@ public class ActivityPage extends LoginPage {
             }
         }
         );
-
 */
 
         //LIST VIEW
@@ -350,7 +341,8 @@ public class ActivityPage extends LoginPage {
 
     public void callme(JSONArray r){
 //        listView.invalidate();
-        setAdapter(restList);
+        //setAdapter(restList);
+        setAdapter1(restArrayList);
         adapter.notifyDataSetChanged();
         System.out.println(latitude + " " + longitude + " SUCCESS ");
         try{
@@ -361,9 +353,8 @@ public class ActivityPage extends LoginPage {
 
     }
 
-    public void setAdapter(String[] array) {
-        adapter = new ArrayAdapter<String>(this,
-                R.layout.hotel_text_view, array);
+    public void setAdapter1(ArrayList<Name_Review> array) {
+        adapter = new MyAdapter(this, array);
         listView = (ListView) findViewById(R.id.resturant_list);
         listView.setAdapter(adapter);
 
@@ -407,28 +398,20 @@ public class ActivityPage extends LoginPage {
     /*
     public void onClick(View v){
         switch (v.getId()) {
-
             case R.id.gsignOut:
                 signOut();
                 break;
-
             case R.id.signOutButton:
                 break;
         }
-
     }
-
     public void logout(View view){
-
         SharedPreferences sharedpreferences = getSharedPreferences(LoginPage.MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.clear();
         editor.apply();
         backToHome();
-
     }
-
-
     public void signOut(){
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
@@ -436,10 +419,7 @@ public class ActivityPage extends LoginPage {
                 backToHome();
             }
         });
-
     }
-
-
     private void backToHome(){
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
