@@ -23,26 +23,48 @@
         android:layout_marginBottom="1px"
         android:orientation="vertical"
         android:background="@drawable/banner"
+       />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="124px"
+        android:gravity="center"
+        android:layout_weight="0.1"
+        android:background="#CCFFFFFF"
+        android:layout_marginBottom="1px"
+        android:orientation="horizontal"
         >
 
+        <Spinner android:layout_width="71dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spin"
+            android:entries="@array/drop_down"
+            android:layout_weight="0.47">
 
+        </Spinner>
+
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/search_bar"
+            android:layout_weight="1"
+            android:ems="4"
+            android:background="@null"
+            />
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="30dp"
+            android:src="@drawable/plate"
+            android:layout_weight="0.14"
+            android:onClick="searchCuisineDish"
+            />
 
     </LinearLayout>
 
-   <!--
-    <Button
-        android:id="@+id/signOutButton"
-        android:text="sign Out"
-        android:onClick="logout"
-        android:layout_height="73dp"
-        android:layout_width="wrap_content"/>
-    <Button
-        android:id="@+id/gsignOut"
-        android:text="G sign Out"
-        android:onClick="logout"
-        android:layout_height="73dp"
-        android:layout_width="wrap_content" />
--->
+
+
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"

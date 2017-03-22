@@ -20,7 +20,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +66,11 @@ public class ActivityPage extends LoginPage {
     Double longitude;
     Double latitude;
     ArrayList<Name_Distance> restArrayList = new ArrayList<Name_Distance>();
+
+    Spinner spin;
+    EditText searchValue;
+    String searchVal;
+    String selectedSearch;
 
 
 
@@ -122,6 +129,22 @@ public class ActivityPage extends LoginPage {
 
         configure_button();
 
+        //code to set value of search type
+
+        spin = (Spinner) findViewById(R.id.spin);
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSearch = parent.getSelectedItem().toString();
+            }
+            @Override
+            public  void onNothingSelected(AdapterView<?> parent){
+
+            }
+        });
+
+
 //FETCHING LOCATION ENDS
 
         //fetching data from sever
@@ -132,58 +155,58 @@ public class ActivityPage extends LoginPage {
         setAdapter1(temp);
 
 
-        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+//        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
         server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
-        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
+//        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
+//
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                System.out.println("JSON Response" + response);
+//
+//
+//
+//                setrestarray(response);
+//                restArray = response;
+//
+//                System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
+//                System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
+//                restList = new String[restArray.length()];
+//                for (int i = 0; i < restArray.length(); i++) {
+//                    try{
+//                        JSONObject jsonobject = restArray.getJSONObject(i);
+//                        String hname = jsonobject.getString("hotelname");
+//                        String dist = jsonobject.getString("distance");
+//                        restList[i] = hname;
+//                        restArrayList.add(new Name_Distance(hname,dist));
+//                        System.out.println(jsonobject);
+//
+//
+//
+//                    }
+//                    catch (JSONException e){
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//                callme(restArray);
+//                //disp(restArray);
+//
+//
+//            }
+//        }, new Response.ErrorListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//                System.out.println("ERROR in getting JSON object");
+//                // TODO Auto-generated method stub
+//
+//            }
+//        });
+//        requestQueue.add(JARequest);
 
-            @Override
-            public void onResponse(JSONArray response) {
-                System.out.println("JSON Response" + response);
 
-
-
-                setrestarray(response);
-                restArray = response;
-
-                System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
-                System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
-                restList = new String[restArray.length()];
-                for (int i = 0; i < restArray.length(); i++) {
-                    try{
-                        JSONObject jsonobject = restArray.getJSONObject(i);
-                        String hname = jsonobject.getString("hotelname");
-                        String dist = jsonobject.getString("distance");
-                        restList[i] = hname;
-                        restArrayList.add(new Name_Distance(hname,dist));
-                        System.out.println(jsonobject);
-
-
-
-                    }
-                    catch (JSONException e){
-                        e.printStackTrace();
-                    }
-
-                }
-                callme(restArray);
-                //disp(restArray);
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                System.out.println("ERROR in getting JSON object");
-                // TODO Auto-generated method stub
-
-            }
-        });
-        requestQueue.add(JARequest);
-
-
-
+        jsonMethod(server_url);
 
 
 
@@ -306,6 +329,61 @@ public class ActivityPage extends LoginPage {
     }
 
 
+    void jsonMethod(String server_url){
+        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
+
+            @Override
+            public void onResponse(JSONArray response) {
+                System.out.println("JSON Response" + response);
+
+
+
+                setrestarray(response);
+                restArray = response;
+
+                System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
+                System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
+                restList = new String[restArray.length()];
+                for (int i = 0; i < restArray.length(); i++) {
+                    try{
+                        JSONObject jsonobject = restArray.getJSONObject(i);
+                        String hname = jsonobject.getString("hotelname");
+                        String dist = jsonobject.getString("distance");
+                        restList[i] = hname;
+                        restArrayList.add(new Name_Distance(hname,dist));
+                        System.out.println(jsonobject);
+
+
+
+                    }
+                    catch (JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+                callme(restArray);
+                //disp(restArray);
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println("ERROR in getting JSON object");
+                // TODO Auto-generated method stub
+
+            }
+        });
+        requestQueue.add(JARequest);
+
+
+    }
+
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -397,36 +475,32 @@ public class ActivityPage extends LoginPage {
 
     }
 
-    /*
-    public void onClick(View v){
-        switch (v.getId()) {
-            case R.id.gsignOut:
-                signOut();
-                break;
-            case R.id.signOutButton:
-                break;
+    public void searchCuisineDish(View view) {
+        searchValue = (EditText) findViewById(R.id.search_bar);
+        searchVal = searchValue.getText().toString();
+        if(!searchVal.equals("")){
+            String url = server_url+"&"+selectedSearch+"="+searchVal;
+            restArrayList.clear();
+            jsonMethod(url);
+        }else if(selectedSearch.equalsIgnoreCase("cuisine"))
+        {
+            Toast.makeText(getApplicationContext(), "Enter a cuisine", Toast.LENGTH_LONG).show();
+        }else
+        {
+            Toast.makeText(getApplicationContext(), "Enter a cuisine", Toast.LENGTH_LONG).show();
         }
+
     }
-    public void logout(View view){
-        SharedPreferences sharedpreferences = getSharedPreferences(LoginPage.MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.clear();
-        editor.apply();
-        backToHome();
+
+    //when clicked on banner
+
+    public void reloadMenu(View view){
+        restArrayList.clear();
+        jsonMethod(server_url);
+
     }
-    public void signOut(){
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                backToHome();
-            }
-        });
-    }
-    private void backToHome(){
-        Intent intent = new Intent(this, LoginPage.class);
-        startActivity(intent);
-    }
-*/
+
+
 
 
 
