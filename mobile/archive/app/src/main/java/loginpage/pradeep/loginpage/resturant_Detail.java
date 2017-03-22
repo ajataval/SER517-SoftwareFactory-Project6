@@ -30,6 +30,7 @@ public class resturant_Detail extends AppCompatActivity {
     ArrayList<String > descList = new ArrayList<String>();
     String array[];
     String desc;
+    String uname;
     ArrayList<Name_Review> dishArrayList = new ArrayList<Name_Review>();
 
     @Override
@@ -46,12 +47,16 @@ public class resturant_Detail extends AppCompatActivity {
             address = obj.getString("address");
             openNow = obj.getString("openNow");
             menu = obj.getJSONArray("menu");
-
+            uname = obj.getString("username");
             System.out.println(menu.length()+ "ANOOP" + menu.getJSONObject(0)) ;
 
             for(int i =0; i<menu.length() ;i++){
                 String dish = (menu.getJSONObject(i).getString("name"));
                 String rating = (menu.getJSONObject(i).getString("review"));
+                if(rating.equals(null))
+                {
+                    rating = "0";
+                }
                 dishArrayList.add(new Name_Review(dish,rating));
             }
             for(int i =0; i<menu.length() ;i++){
@@ -78,12 +83,13 @@ public class resturant_Detail extends AppCompatActivity {
                                                 //Object o = listView.getItemAtPosition(i);
 
 
-                                                System.out.println("ANOOP" + menuList.get(i));
+                                                //System.out.println("ANOOP" + menuList.get(i));
                                                 desc = descList.get(i);
-                                                menuDetails(desc);
+                                                String dishanme = dishArrayList.get(i).getTitle();
+                                                String hname = hotelName;
+                                                menuDetails(desc,dishanme,hname);
 
-                                                Toast.makeText(getApplicationContext(),  menuList.get(i).toString(),
-                                                        Toast.LENGTH_LONG).show();
+                                                //Toast.makeText(getApplicationContext(),  menuList.get(i).toString(),Toast.LENGTH_LONG).show();
 //
 
                                             }
@@ -109,9 +115,12 @@ public class resturant_Detail extends AppCompatActivity {
 
     }
 
-    public void menuDetails(String desc){
+    public void menuDetails(String desc,String dishname,String hname){
         Intent intent = new Intent(this,menu_Details.class);
         intent.putExtra("DESC", desc);
+        intent.putExtra("DISH", dishname);
+        intent.putExtra("HOTEL", hname);
+        intent.putExtra("UNAME",uname);
         // intent.putExtra("hotelName", hotelName);
         //intent.putExtra("distance", distance);
         //intent.putExtra("address" , address);

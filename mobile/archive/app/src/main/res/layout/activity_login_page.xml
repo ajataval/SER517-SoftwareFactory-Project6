@@ -23,32 +23,60 @@
         >
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="25dp"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/username"
             android:hint="@string/email"
             android:textColor="@color/colorPrimaryDark"
-            android:paddingBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:background="#dddddddd"
             />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="25dp"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/password"
             android:hint="@string/password"
+            android:layout_marginBottom="5dp"
             android:background="#dddddddd"
 
             />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+
+        >
+        <TextView
+            android:id="@+id/sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHighlight="@color/colorPrimaryDark"
+            android:text="New user? SignUp now"
+            android:onClick="signUpUser"
+            android:background="#dddddddd"
+
+
+            />
+
         <TextView
             android:id="@+id/activity_forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginLeft="5dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHighlight="@color/colorPrimaryDark"
             android:text="forgot password?"
@@ -57,8 +85,8 @@
 
             />
 
-
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -75,27 +103,13 @@
             android:id="@+id/button"
 
             />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#dddddddd"
-
-        >
-        <TextView
-            android:id="@+id/sign_up"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHighlight="@color/colorPrimaryDark"
-            android:text="New user ? SignUp Now?"
-            android:onClick="signUpUser"
-
-            />
-
+            android:layout_height="wrap_content"/>
     </LinearLayout>
+
 
 
     <LinearLayout
@@ -105,15 +119,13 @@
         android:gravity="center"
         android:layout_weight="0.10">
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+<!--
         <Button
             android:id="@+id/signOutButton"
             android:text="sign Out"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
+            -->
 
     </LinearLayout>
     <!--</FrameLayout>-->

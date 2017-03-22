@@ -128,7 +128,7 @@ public class ActivityPage extends LoginPage {
         String[] ma = {" "," "};
         //setAdapter(ma);
         ArrayList<Name_Review> temp = new ArrayList<>();
-        temp.add( new Name_Review("asd ", " def"));
+        temp.add( new Name_Review(" Loading", "....."));
         setAdapter1(temp);
 
 

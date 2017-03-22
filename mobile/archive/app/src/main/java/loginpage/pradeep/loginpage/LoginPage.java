@@ -222,9 +222,9 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
             case R.id.sign_in_button:
                 signIn();
                 break;
-            case R.id.signOutButton:
+            /*case R.id.signOutButton:
                 signOut();
-                break;
+                break;*/
         }
     }
 
