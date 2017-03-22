@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class resturant_Detail extends AppCompatActivity {
 
@@ -52,10 +53,10 @@ public class resturant_Detail extends AppCompatActivity {
 
             for(int i =0; i<menu.length() ;i++){
                 String dish = (menu.getJSONObject(i).getString("name"));
-                String rating = (menu.getJSONObject(i).getString("review"));
-                if(rating.equals(null))
+                double rating =Double.parseDouble (menu.getJSONObject(i).getString("review"));
+                if(rating < 1.0)
                 {
-                    rating = "0";
+                    rating = 0.0;
                 }
                 dishArrayList.add(new Name_Review(dish,rating));
             }
@@ -73,6 +74,10 @@ public class resturant_Detail extends AppCompatActivity {
         for(int i=0; i<menuList.size();i++){
             array[i] = menuList.get(i);
         }
+
+        System.out.println("BEFORE" + dishArrayList);
+        Collections.sort(dishArrayList,new MyComparator());
+        System.out.println("AFTER" + dishArrayList);
         adapter = new MyAdapter(this, dishArrayList);
         listView = (ListView) findViewById(R.id.menu_list);
         listView.setAdapter(adapter);

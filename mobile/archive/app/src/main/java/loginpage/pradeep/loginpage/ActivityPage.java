@@ -54,7 +54,7 @@ public class ActivityPage extends LoginPage {
     private JSONArray restArray;
     ListView listView;
     //ArrayAdapter adapter;
-    MyAdapter adapter;  //TWO
+    MyAdapterDistance adapter;  //TWO
     // String hotelName;
     //String distance;
     //String address;
@@ -63,7 +63,7 @@ public class ActivityPage extends LoginPage {
     private LocationListener listener;
     Double longitude;
     Double latitude;
-    ArrayList<Name_Review> restArrayList = new ArrayList<Name_Review>();
+    ArrayList<Name_Distance> restArrayList = new ArrayList<Name_Distance>();
 
 
 
@@ -127,8 +127,8 @@ public class ActivityPage extends LoginPage {
         //fetching data from sever
         String[] ma = {" "," "};
         //setAdapter(ma);
-        ArrayList<Name_Review> temp = new ArrayList<>();
-        temp.add( new Name_Review(" Loading", "....."));
+        ArrayList<Name_Distance> temp = new ArrayList<>();
+        temp.add( new Name_Distance(" Loading", "....."));
         setAdapter1(temp);
 
 
@@ -154,7 +154,7 @@ public class ActivityPage extends LoginPage {
                         String hname = jsonobject.getString("hotelname");
                         String dist = jsonobject.getString("distance");
                         restList[i] = hname;
-                        restArrayList.add(new Name_Review(hname,dist));
+                        restArrayList.add(new Name_Distance(hname,dist));
                         System.out.println(jsonobject);
 
 
@@ -353,8 +353,10 @@ public class ActivityPage extends LoginPage {
 
     }
 
-    public void setAdapter1(ArrayList<Name_Review> array) {
-        adapter = new MyAdapter(this, array);
+    public void setAdapter1(ArrayList<Name_Distance> array) {
+
+
+        adapter = new MyAdapterDistance(this, array);
         listView = (ListView) findViewById(R.id.resturant_list);
         listView.setAdapter(adapter);
 

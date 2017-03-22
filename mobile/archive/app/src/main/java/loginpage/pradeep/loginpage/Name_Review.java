@@ -6,9 +6,9 @@ package loginpage.pradeep.loginpage;
 
 public class Name_Review {
     private String title;
-    private String description;
+    private double description;
 
-    public Name_Review(String title, String description) {
+    public Name_Review(String title, double description) {
         super();
         this.title = title;
         this.description = description;
@@ -17,7 +17,7 @@ public class Name_Review {
     public String getTitle(){
         return this.title;
     }
-    public String getDescription(){
+    public double getDescription(){
         return this.description;
     }
 }
