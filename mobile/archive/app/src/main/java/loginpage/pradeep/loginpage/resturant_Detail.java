@@ -1,5 +1,6 @@
 package loginpage.pradeep.loginpage;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.MapFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +36,7 @@ public class resturant_Detail extends AppCompatActivity {
     String desc;
     String uname;
     ArrayList<Name_Review> dishArrayList = new ArrayList<Name_Review>();
+    //JSONObject obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +44,20 @@ public class resturant_Detail extends AppCompatActivity {
         setContentView(R.layout.activity_resturant__detail);
         Intent intent = getIntent();
 
+
+
         try{
+            String flag = intent.getStringExtra("FLAG");
+
             JSONObject obj = new JSONObject(intent.getStringExtra("JSON") );
             System.out.println(obj + " REST");
             hotelName = obj.getString("hotelname");
-            distance = obj.getString("distance") + " mi";
+           // distance = obj.getString("distance") + " mi";
             address = obj.getString("address");
-            openNow = obj.getString("openNow");
+            //openNow = obj.getString("openNow");
             menu = obj.getJSONArray("menu");
             uname = obj.getString("username");
-            System.out.println(menu.length()+ "ANOOP" + menu.getJSONObject(0)) ;
+           // System.out.println(menu.length()+ "ANOOP" + menu.getJSONObject(0)) ;
 
             for(int i =0; i<menu.length() ;i++){
                 String dish = (menu.getJSONObject(i).getString("name"));
@@ -75,9 +83,9 @@ public class resturant_Detail extends AppCompatActivity {
             array[i] = menuList.get(i);
         }
 
-        System.out.println("BEFORE" + dishArrayList);
+       // System.out.println("BEFORE" + dishArrayList);
         Collections.sort(dishArrayList,new MyComparator());
-        System.out.println("AFTER" + dishArrayList);
+      //  System.out.println("AFTER" + dishArrayList);
         adapter = new MyAdapter(this, dishArrayList);
         listView = (ListView) findViewById(R.id.menu_list);
         listView.setAdapter(adapter);

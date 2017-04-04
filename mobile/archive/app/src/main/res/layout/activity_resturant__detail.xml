@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_resturant__detail"
@@ -11,6 +13,7 @@
     android:orientation="vertical"
     android:background="@drawable/food1"
     tools:context="loginpage.pradeep.loginpage.resturant_Detail">
+
 
 
 

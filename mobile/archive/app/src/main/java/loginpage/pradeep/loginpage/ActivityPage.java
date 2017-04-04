@@ -99,10 +99,10 @@ public class ActivityPage extends LoginPage {
                 Log.d("Location",""+location.getLongitude());
                 longitude =location.getLongitude();
                 latitude  = location.getLatitude();
-                latitude = 33.42025778;
-                longitude = -111.9306630;
-              // String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
-
+                //latitude = 33.42025778;
+                //longitude = -111.9306630;
+               String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
+                System.out.println(latitude + " " +longitude);
                // server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
                // System.out.println(dummy.equals(server_url) + "THIS SHOUDL");
 
@@ -156,7 +156,7 @@ public class ActivityPage extends LoginPage {
 
 
 //        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
-        server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
+        //server_url = "http://hungrymeser.herokuapp.com/search?lat=33.303932&long=-111.678963";
 //        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
 //
 //            @Override
@@ -335,15 +335,15 @@ public class ActivityPage extends LoginPage {
 
             @Override
             public void onResponse(JSONArray response) {
-                System.out.println("JSON Response" + response);
+               // System.out.println("JSON Response" + response);
 
 
 
                 setrestarray(response);
                 restArray = response;
 
-                System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
-                System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
+              //  System.out.println("LENGTH OF JSONARRRAY IS " + " " + restArray.length());
+               // System.out.println("LENGTH OF JSONARRRAY IS asdasd " + " " + restArray.length());
                 restList = new String[restArray.length()];
 
                 if(restArray.length() != 0) {
@@ -355,7 +355,7 @@ public class ActivityPage extends LoginPage {
                             String dist = jsonobject.getString("distance");
                             restList[i] = hname;
                             restArrayList.add(new Name_Distance(hname, dist));
-                            System.out.println(jsonobject);
+                           // System.out.println(jsonobject);
 
 
                         } catch (JSONException e) {
@@ -427,9 +427,9 @@ public class ActivityPage extends LoginPage {
         //setAdapter(restList);
         setAdapter1(restArrayList);
         adapter.notifyDataSetChanged();
-        System.out.println(latitude + " " + longitude + " SUCCESS ");
+       System.out.println(latitude + " " + longitude + " SUCCESS ");
         try{
-            System.out.println(r.length() + " asdasdasd asdasd");
+            //System.out.println(r.length() + " asdasdasd asdasd");
         }catch (NullPointerException e){
             System.out.println("NULL HERE");
         }
@@ -450,7 +450,7 @@ public class ActivityPage extends LoginPage {
                                                 Object o = listView.getItemAtPosition(i);
                                                 //String s = Integer.toString(i);
                                                 try{
-                                                    System.out.println("ANOOP" + restArray.getJSONObject(i));
+                                                  //  System.out.println("ANOOP" + restArray.getJSONObject(i));
                                                     objIntent = restArray.getJSONObject(i);
                                                     //hotelName = objIntent.getString("hotelname");
                                                     //distance = Double.toString(objIntent.getDouble("distance"));
@@ -473,6 +473,7 @@ public class ActivityPage extends LoginPage {
     public void resturantView(JSONObject objIntent){
         Intent intent = new Intent(this,resturant_Detail.class);
         intent.putExtra("JSON", objIntent.toString());
+        intent.putExtra("FLAG", "ACTIVITY");
         // intent.putExtra("hotelName", hotelName);
         //intent.putExtra("distance", distance);
         //intent.putExtra("address", address);

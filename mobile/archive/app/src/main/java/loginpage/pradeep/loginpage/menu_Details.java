@@ -106,6 +106,8 @@ public class menu_Details extends AppCompatActivity {
                             public void onResponse(JSONObject res){
 
                                 System.out.println("Success full entered");
+                                System.out.println(res);
+                                refreshRating(res);
 
                             }
                         }, new Response.ErrorListener() {
@@ -120,5 +122,15 @@ public class menu_Details extends AppCompatActivity {
 
         };
         MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
+    }
+
+    public void refreshRating(JSONObject res){
+        Intent intent = new Intent(this,resturant_Detail.class);
+
+        intent.putExtra("JSON", res.toString());
+        intent.putExtra("FLAG", "MENU");
+        //intent.putExtra("distance", distance);
+        //intent.putExtra("address" , address);
+       startActivity(intent);
     }
 }
