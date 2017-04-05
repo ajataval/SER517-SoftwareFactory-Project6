@@ -4,28 +4,44 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by pradeepbalakrishnan on 3/15/17.
  */
 
 public class EncryptDec extends Activity {
-        public static String seedValue = "I AM UNBREAKABLE";
-        public static String MESSAGE = "No one can read this message without decrypting me.";
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            try {
-                String encryptedData = AESHelper.encrypt(seedValue, MESSAGE);
-                Log.v("EncryptDecrypt", "Encoded String " + encryptedData);
-                Log.v("EncryptDecrypt", "Encoded String " + encryptedData);
-                String decryptedData = AESHelper.decrypt(seedValue, encryptedData);
-                Log.v("EncryptDecrypt", "Decoded String " + decryptedData);
+    /**
+     * Encrypt a text into MD5
+     * @param text
+     * @return MD5 encrypted text
+     */
+    public final static String encrypt(final String text) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = MessageDigest
+                    .getInstance("MD5");
+            digest.update(text.getBytes());
+            byte messageDigest[] = digest.digest();
 
-            } catch (Exception e) {
-                e.printStackTrace();
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++) {
+                String h = Integer.toHexString(0xFF & messageDigest[i]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
             }
-        }
+            return hexString.toString();
 
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
+}
+
+
 

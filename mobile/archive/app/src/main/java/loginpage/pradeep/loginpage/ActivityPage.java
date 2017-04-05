@@ -63,8 +63,8 @@ public class ActivityPage extends LoginPage {
     JSONObject objIntent;
     private LocationManager locationManager;
     private LocationListener listener;
-    Double longitude;
-    Double latitude;
+    Double longitude = 0.0;
+    Double latitude = 0.0;
     ArrayList<Name_Distance> restArrayList = new ArrayList<Name_Distance>();
 
     Spinner spin;
@@ -91,6 +91,9 @@ public class ActivityPage extends LoginPage {
 
 //FETCHING LOCATION BEGINS
 
+
+
+
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         listener = new LocationListener() {
@@ -99,13 +102,19 @@ public class ActivityPage extends LoginPage {
                 Log.d("Location",""+location.getLongitude());
                 longitude =location.getLongitude();
                 latitude  = location.getLatitude();
+
                 //latitude = 33.42025778;
                 //longitude = -111.9306630;
                String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
                 System.out.println(latitude + " " +longitude);
+
+
+              // String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
+
+
                // server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
                // System.out.println(dummy.equals(server_url) + "THIS SHOUDL");
-
+                configure_button();
 
             }
 
@@ -126,8 +135,6 @@ public class ActivityPage extends LoginPage {
                 startActivity(i);
             }
         };
-
-        configure_button();
 
         //code to set value of search type
 
@@ -156,7 +163,12 @@ public class ActivityPage extends LoginPage {
 
 
 //        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+
         //server_url = "http://hungrymeser.herokuapp.com/search?lat=33.303932&long=-111.678963";
+
+
+        server_url = "http://hungrymeser.herokuapp.com/search?lat="+latitude+"&long="+longitude;
+
 //        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
 //
 //            @Override
@@ -507,6 +519,21 @@ public class ActivityPage extends LoginPage {
     }
 
 
+    private void fetchedLocation(){
+        if(latitude == 0.0  &&  longitude == 0.0)
+        {
+            Toast.makeText(getApplicationContext(), "Unable to fetch location", Toast.LENGTH_LONG).show();
+
+        }
+        else if(latitude > 0.0  &&  longitude > 0.0)
+        {
+          //  contentPage(uname);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();
+        }
+    }
 
 
 
