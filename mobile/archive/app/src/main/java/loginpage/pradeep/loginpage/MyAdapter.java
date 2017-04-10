@@ -45,7 +45,7 @@ public class MyAdapter extends ArrayAdapter<Name_Review> {
         // 4. Set the text for textView
         labelView.setText(itemsArrayList.get(position).getTitle());
 
-        double rating = (itemsArrayList.get(position).getDescription());
+        double rating = (itemsArrayList.get(position).getRating());
         if(rating == 1.0){
             valueView.setImageResource(R.drawable.rating1);
         }

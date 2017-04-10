@@ -6,18 +6,24 @@ package loginpage.pradeep.loginpage;
 
 public class Name_Review {
     private String title;
-    private double description;
+    private double rating;
+    private String description;
 
-    public Name_Review(String title, double description) {
+    public Name_Review(String title, double rating, String description) {
         super();
         this.title = title;
         this.description = description;
+        this.rating = rating;
     }
 
     public String getTitle(){
         return this.title;
     }
-    public double getDescription(){
+    public double getRating(){
+        return this.rating;
+    }
+
+    public String getDescription(){
         return this.description;
     }
 }

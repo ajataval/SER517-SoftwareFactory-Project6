@@ -39,7 +39,7 @@ public class SignUpPage extends AppCompatActivity {
 
 
 
-    SQLiteDatabase db;
+
 
 
     private  static String firstName = null;
@@ -61,6 +61,7 @@ public class SignUpPage extends AppCompatActivity {
     private EditText passwd;
     private EditText cfrmpswd;
     private EditText phone_number;
+    private SQLiteDatabase db;
 
     final String serverUrl = "https://hungrymeser.herokuapp.com/app/users";
 
@@ -84,6 +85,9 @@ public class SignUpPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
+
                 firstName = first_name.getText().toString();
                 lastName = last_name.getText().toString();
                 emailID = email.getText().toString();
@@ -97,6 +101,32 @@ public class SignUpPage extends AppCompatActivity {
 
                 EditText security_ques = (EditText) findViewById(R.id.secquest1);
                 securityQuest = security_ques.getText().toString();
+
+                //CREATE DB FAV_UNAME
+                Context context = getApplicationContext();
+                String s = String.valueOf(context.getDatabasePath("Anoop.db"));
+                try{
+                    db = getApplicationContext().openOrCreateDatabase(s,MODE_APPEND,null);
+                    db.beginTransaction();
+                    try{
+                        String table_name = "FAV_" + emailID.split("\\@")[0];
+                        String create = "CREATE TABLE if not exists " + table_name + " (" + "HNAME TEXT);";
+                        db.execSQL(create);
+                        db.setTransactionSuccessful();
+                        Toast.makeText(getApplicationContext(), "TABLE CREATED" +  table_name, Toast.LENGTH_LONG).show();
+                    }catch (SQLException e){
+                        System.out.println("SOMETHING WRONG WHILE CREATING");
+                    }
+                    finally {
+                        db.endTransaction();
+                    }
+
+
+                }catch (SQLException e){
+                    System.out.println("SOMETHING WRONG WHILE OPENING");
+                }
+
+
 
                 boolean validemail = isEmailValid(emailID);
                 boolean validpassword = password.equals(confirmpassword);
@@ -158,6 +188,7 @@ public class SignUpPage extends AppCompatActivity {
 
                 db.execSQL(query3);
                 System.out.println("TABLE CREATED signup storage");
+
                 db.setTransactionSuccessful();
 
             } catch (SQLiteException e) {
@@ -212,7 +243,7 @@ public class SignUpPage extends AppCompatActivity {
             jsonObj.put("firstname",firstName);
             jsonObj.put("lastName",lastName);
             jsonObj.put("username",emailID);
-            jsonObj.put("password",password);
+            jsonObj.put("password",EncryptDec.encrypt(password));
             jsonObj.put("phoneNumber",phoneNumber);
             jsonObj.put("securityQuest",securityQuest);
 

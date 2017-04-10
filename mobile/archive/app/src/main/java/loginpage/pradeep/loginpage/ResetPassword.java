@@ -12,6 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ResetPassword extends AppCompatActivity {
 
     private Cursor c;
@@ -28,15 +38,23 @@ public class ResetPassword extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = getIntent();
                 String email = intent.getStringExtra("email");
+                String serverUrl = "http://hungrymeser.herokuapp.com/app/users/"+email;
+
+
                 //using this email update password
 
                 EditText passwod = (EditText) findViewById(R.id.resestPassword);
                 EditText confirmPassword = (EditText) findViewById((R.id.confrimResetPassword));
                 String pass = passwod.getText().toString();
                 String confirmPass = confirmPassword.getText().toString();
+
                 //System.out.println(confirmPass);
                 if(pass.equals(confirmPass)){
-                    result = updatePassword(email,confirmPass);
+                    String encryptedPassword = EncryptDec.encrypt(confirmPass);
+                    System.out.println("PASS NEW" + encryptedPassword);
+                    result = updatePassword(email,encryptedPassword,serverUrl);
+                    Toast.makeText(getApplicationContext(), "Password reset sucessfull", Toast.LENGTH_LONG).show();
+                    //GO TO MAIN PAGE
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
@@ -48,34 +66,42 @@ public class ResetPassword extends AppCompatActivity {
         //Query using this email and update password if security question matches
 
     }
-    public String updatePassword(String email,String confirmPass){
-        Context context = getApplicationContext();
-        String s = String.valueOf(context.getDatabasePath("Anoop.db"));
-        db = getApplicationContext().openOrCreateDatabase(s,MODE_APPEND,null);
-        db.beginTransaction();
-        //String SELECT_SQL = "UPDATE SIGNINFO SET Password='" + confirmPass + "' WHERE EmailID=" + email + ";";
-        //db.execSQL(SELECT_SQL);
+    public String updatePassword(String email,String encryptedPassword,String serverUrl){
 
-        //String query = "SELECT * FROM SIGNINFO;";
-        //c = db.rawQuery(query,null);
-        ContentValues cv = new ContentValues();
-        cv.put("Password",confirmPass);
-        db.update("SIGNINFO", cv, "Emailid = "+"'"+email+"'", null);
-        db.setTransactionSuccessful();
-        db.endTransaction();
-        /*c.moveToFirst();
-        while(c.isAfterLast() == false){
-            if(email.equals(c.getString(c.getColumnIndex("EmailID")))){
-                break;
+        JSONObject obj = new JSONObject();
+        try{
+            obj.put("password",encryptedPassword);
+        }catch (JSONException e){
+
+        }
+        final RequestQueue requestQueue = Volley.newRequestQueue(ResetPassword.this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, serverUrl, obj, new Response.Listener<JSONObject>(){
+
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("SUCESFULLY UPDATED");
+                goToHome();
+
             }
-            else{
-                c.moveToNext();
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println("ERROR in updating password");
+                // TODO Auto-generated method stub
+
             }
-
-        }*/
-
+        });
+        requestQueue.add(jsonObjectRequest);
 
         return "Sucess";
 
+    }
+
+
+    public  void goToHome(){
+        Intent intent = new Intent(this,LoginPage.class);
+        startActivity(intent);
     }
 }

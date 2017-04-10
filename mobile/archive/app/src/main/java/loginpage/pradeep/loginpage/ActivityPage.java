@@ -71,7 +71,7 @@ public class ActivityPage extends LoginPage {
     EditText searchValue;
     String searchVal;
     String selectedSearch;
-
+    String usernameSend;
 
 
 
@@ -83,6 +83,7 @@ public class ActivityPage extends LoginPage {
 
     protected void onCreate(final Bundle savedInstanceState) {
         Intent intent = getIntent();
+        usernameSend = intent.getStringExtra("username");
         //latitude = Double.parseDouble(intent.getStringExtra("lat"));
         // longitude = Double.parseDouble(intent.getStringExtra("lon"));
         // System.out.println(latitude + "   " + longitude + " asdsad ");
@@ -112,7 +113,7 @@ public class ActivityPage extends LoginPage {
               // String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
 
 
-               // server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
+                server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
                // System.out.println(dummy.equals(server_url) + "THIS SHOUDL");
                 configure_button();
 
@@ -164,10 +165,10 @@ public class ActivityPage extends LoginPage {
 
 //        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
 
-        //server_url = "http://hungrymeser.herokuapp.com/search?lat=33.303932&long=-111.678963";
+        server_url = "http://hungrymeser.herokuapp.com/search?lat=33.303932&long=-111.678963";
 
 
-        server_url = "http://hungrymeser.herokuapp.com/search?lat="+latitude+"&long="+longitude;
+       // server_url = "http://hungrymeser.herokuapp.com/search?lat="+latitude+"&long="+longitude;
 
 //        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
 //
@@ -475,15 +476,16 @@ public class ActivityPage extends LoginPage {
                                                 //String resturantName = "WORKING";
 
 //                                            Toast.makeText(getApplicationContext(), Selecteditem, Toast.LENGTH_SHORT).show();
-                                                resturantView(objIntent);
+                                                resturantView(objIntent,usernameSend);
 
                                             }
                                         }
         );
     }
 
-    public void resturantView(JSONObject objIntent){
+    public void resturantView(JSONObject objIntent,String username){
         Intent intent = new Intent(this,resturant_Detail.class);
+        intent.putExtra("username",username);
         intent.putExtra("JSON", objIntent.toString());
         intent.putExtra("FLAG", "ACTIVITY");
         // intent.putExtra("hotelName", hotelName);

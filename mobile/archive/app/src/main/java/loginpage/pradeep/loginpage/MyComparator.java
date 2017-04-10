@@ -10,10 +10,10 @@ import java.util.Comparator;
 public class MyComparator  implements Comparator<Name_Review>{
 
     public int compare( Name_Review o1,Name_Review o2){
-        if(o1.getDescription() > o2.getDescription()){
+        if(o1.getRating() > o2.getRating()){
             return -1;
         }
-        else if (o1.getDescription() < o2.getDescription()){
+        else if (o1.getRating() < o2.getRating()){
             return 1;
         }
         return 0;

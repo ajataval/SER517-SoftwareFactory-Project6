@@ -126,7 +126,7 @@ public class menu_Details extends AppCompatActivity {
 
     public void refreshRating(JSONObject res){
         Intent intent = new Intent(this,resturant_Detail.class);
-
+        intent.putExtra("username",uname);
         intent.putExtra("JSON", res.toString());
         intent.putExtra("FLAG", "MENU");
         //intent.putExtra("distance", distance);
