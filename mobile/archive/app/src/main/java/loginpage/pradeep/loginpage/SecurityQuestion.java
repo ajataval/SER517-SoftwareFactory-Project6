@@ -20,7 +20,7 @@ public class SecurityQuestion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security_question);
 
-
+       // getActionBar().setDisplayHomeAsUpEnabled(true);
         Button goToReset = (Button) findViewById(R.id.goToResetPage);
         Intent intent1 = getIntent();
         final String email = intent1.getStringExtra("email");

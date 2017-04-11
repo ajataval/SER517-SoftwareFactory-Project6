@@ -72,7 +72,7 @@ public class ActivityPage extends LoginPage {
     String searchVal;
     String selectedSearch;
     String usernameSend;
-
+    ArrayList<String> favList = new ArrayList<>();
 
 
 
@@ -84,11 +84,58 @@ public class ActivityPage extends LoginPage {
     protected void onCreate(final Bundle savedInstanceState) {
         Intent intent = getIntent();
         usernameSend = intent.getStringExtra("username");
+
         //latitude = Double.parseDouble(intent.getStringExtra("lat"));
         // longitude = Double.parseDouble(intent.getStringExtra("lon"));
         // System.out.println(latitude + "   " + longitude + " asdsad ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
+            String url1 = "https://hungrymeser.herokuapp.com/app/users/" + usernameSend;
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.GET,url1,null,
+                            new Response.Listener<JSONObject>(){
+
+                                @Override
+                                public void onResponse(JSONObject res){
+
+                                    System.out.println("GOT INSIDE ****");
+                                    try{
+                                        JSONArray ans  = res.getJSONArray("favorite");
+                                        System.out.println("GETTING HERE INSIDE");
+                                        //System.out.println(ans.getClass().getName());
+                                        //System.out.println(ans.get(1).getClass().getName());
+                                        for(int i=0;i<ans.length();i++){
+                                            favList.add(ans.get(i).toString());
+                                        }
+                                        System.out.println("LIST NEW IN ACTIVITY" + favList );
+                                    }catch (JSONException e){
+                                        System.out.println("ERR");
+                                        e.printStackTrace();
+
+                                    }
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            System.out.println("Something went wrong while marking");
+                            error.printStackTrace();
+
+                        }
+                    }){
+
+            };
+            MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
+
+
+
 
 //FETCHING LOCATION BEGINS
 
@@ -368,7 +415,7 @@ public class ActivityPage extends LoginPage {
                             String dist = jsonobject.getString("distance");
                             restList[i] = hname;
                             restArrayList.add(new Name_Distance(hname, dist));
-                           // System.out.println(jsonobject);
+                           System.out.println(jsonobject);
 
 
                         } catch (JSONException e) {
@@ -435,6 +482,8 @@ public class ActivityPage extends LoginPage {
     }
 
 
+
+
     public void callme(JSONArray r){
 //        listView.invalidate();
         //setAdapter(restList);
@@ -488,6 +537,8 @@ public class ActivityPage extends LoginPage {
         intent.putExtra("username",username);
         intent.putExtra("JSON", objIntent.toString());
         intent.putExtra("FLAG", "ACTIVITY");
+        intent.putStringArrayListExtra("favList",favList);
+
         // intent.putExtra("hotelName", hotelName);
         //intent.putExtra("distance", distance);
         //intent.putExtra("address", address);

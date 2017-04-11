@@ -25,13 +25,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityPage" />
-        <activity android:name=".ForgetPassword" />
-        <activity android:name=".SignUpPage" />
-        <activity android:name=".ResetPassword" />
-        <activity android:name=".SecurityQuestion" />
+        <activity android:name=".ForgetPassword"
+            android:parentActivityName= ".LoginPage"/>
+        <activity android:name=".SignUpPage"
+            android:parentActivityName= ".LoginPage"/>
+        <activity android:name=".ResetPassword"
+            android:parentActivityName= ".SecurityQuestion"/>
+        <activity android:name=".SecurityQuestion"
+            android:parentActivityName= ".ForgetPassword"/>
         <activity android:name=".EncryptDec" />
-        <activity android:name=".resturant_Detail" />
-        <activity android:name=".menu_Details"></activity>
+        <activity android:name=".resturant_Detail"
+            android:parentActivityName= ".ActivityPage"/>
+        <activity android:name=".menu_Details"
+            android:parentActivityName= ".resturant_Detail"></activity>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

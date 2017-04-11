@@ -31,7 +31,7 @@ public class ResetPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
-
+       // getActionBar().setDisplayHomeAsUpEnabled(true);
         Button reset = (Button) findViewById(R.id.reset);
         reset.setOnClickListener(new View.OnClickListener(){
             @Override

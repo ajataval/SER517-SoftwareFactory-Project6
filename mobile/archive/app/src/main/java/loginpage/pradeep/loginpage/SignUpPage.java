@@ -73,6 +73,8 @@ public class SignUpPage extends AppCompatActivity {
         context = getApplicationContext();
         s = String.valueOf(context.getDatabasePath("Anoop.db"));
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         first_name = (EditText) findViewById(R.id.firstname);
         last_name = (EditText) findViewById(R.id.lastname);
         email = (EditText) findViewById(R.id.email);

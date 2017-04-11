@@ -31,7 +31,7 @@ public class ForgetPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-
+ //       getActionBar().setDisplayHomeAsUpEnabled(true);
         final Button readEmail = (Button) findViewById(R.id.readEmail);
         readEmail.setOnClickListener(new View.OnClickListener(){
             @Override

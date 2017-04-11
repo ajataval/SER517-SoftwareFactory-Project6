@@ -22,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class menu_Details extends AppCompatActivity {
 
     public RatingBar ratingBar;
@@ -30,12 +32,14 @@ public class menu_Details extends AppCompatActivity {
     String review;
     String dish ;
     String uname;
+    ArrayList<String > temp = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__details);
         Intent intent = getIntent();
         String Description = intent.getStringExtra("DESC");
+        temp = intent.getStringArrayListExtra("favList");
         TextView Desc = (TextView) findViewById(R.id.Desc);
         //Desc.setText(Description);
         Desc.setText(Description);
@@ -48,7 +52,7 @@ public class menu_Details extends AppCompatActivity {
         dish = intent.getStringExtra("DISH");
         uname = intent.getStringExtra("UNAME");
 
-
+       // getActionBar().setDisplayHomeAsUpEnabled(true);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         ratingBar.setOnClickListener(new View.OnClickListener(){
@@ -129,6 +133,7 @@ public class menu_Details extends AppCompatActivity {
         intent.putExtra("username",uname);
         intent.putExtra("JSON", res.toString());
         intent.putExtra("FLAG", "MENU");
+        intent.putExtra("favList", temp);
         //intent.putExtra("distance", distance);
         //intent.putExtra("address" , address);
        startActivity(intent);
