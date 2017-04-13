@@ -40,4 +40,5 @@ Nodeclipse files
 .project
 .metadata
 RemoteSystemsTempFiles
-
+.idea
+.gradle
