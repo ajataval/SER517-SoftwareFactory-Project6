@@ -1,8 +1,7 @@
 package loginpage.pradeep.loginpage;
 
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -11,15 +10,12 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -32,12 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +42,7 @@ public class ActivityPage extends LoginPage {
     TextView statusTextView;
     String[] restList = new String[0];
     // server url
-    String server_url = "http://hungrymeser.herokuapp.com/dummy" ;//"https://hungrymeser.herokuapp.com";
+    String server_url ="http://hungrymeser.herokuapp.com/search?" ;//"https://hungrymeser.herokuapp.com";
     private TextView servtext;
     private JSONArray restArray;
     ListView listView;
@@ -74,6 +65,9 @@ public class ActivityPage extends LoginPage {
     String usernameSend;
     ArrayList<String> favList = new ArrayList<>();
 
+    ArrayList<Name_Distance> temp = new ArrayList<>();
+
+    private ProgressDialog dialog;
 
 
     public void setrestarray(JSONArray temp){
@@ -142,27 +136,33 @@ public class ActivityPage extends LoginPage {
 
 
 
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Fetching data...");
+        dialog.setCancelable(false);
+        dialog.setInverseBackgroundForced(false); // this was deprecated as of SDK 23
+
+        dialog.show();
+
+        //FETCHING LOCATION BEGINS
+
+
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
                 Log.d("Location",""+location.getLongitude());
                 longitude =location.getLongitude();
                 latitude  = location.getLatitude();
 
-                //latitude = 33.42025778;
-                //longitude = -111.9306630;
-               String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
-                System.out.println(latitude + " " +longitude);
 
+                temp.add( new Name_Distance("", ""));
+                setAdapter1(temp);
+                jsonMethod(server_url+"lat="+33.421484+"&long="+-111.922864);
 
-              // String dummy = server_url + "lat=" +latitude.toString()+"&long="+longitude.toString();
-
-
-                server_url = "http://hungrymeser.herokuapp.com/search?lat=33.42025778&long=-111.9306630";
-               // System.out.println(dummy.equals(server_url) + "THIS SHOUDL");
-                configure_button();
 
             }
 
@@ -183,6 +183,8 @@ public class ActivityPage extends LoginPage {
                 startActivity(i);
             }
         };
+        configure_button();
+
 
         //code to set value of search type
 
@@ -212,7 +214,7 @@ public class ActivityPage extends LoginPage {
 
 //        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
 
-        server_url = "http://hungrymeser.herokuapp.com/search?lat=33.303932&long=-111.678963";
+
 
 
        // server_url = "http://hungrymeser.herokuapp.com/search?lat="+latitude+"&long="+longitude;
@@ -266,7 +268,7 @@ public class ActivityPage extends LoginPage {
 //        requestQueue.add(JARequest);
 
 
-        jsonMethod(server_url);
+        //jsonMethod(server_url);
 
 
 
@@ -533,7 +535,7 @@ public class ActivityPage extends LoginPage {
     }
 
     public void resturantView(JSONObject objIntent,String username){
-        Intent intent = new Intent(this,resturant_Detail.class);
+        Intent intent = new Intent(this,Resturant_Detail.class);
         intent.putExtra("username",username);
         intent.putExtra("JSON", objIntent.toString());
         intent.putExtra("FLAG", "ACTIVITY");

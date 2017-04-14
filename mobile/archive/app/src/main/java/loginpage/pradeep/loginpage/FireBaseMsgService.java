@@ -23,6 +23,7 @@ public class FireBaseMsgService extends FirebaseMessagingService {
 
     String end_time = "";
     String start_time = "";
+    String address = "";
     private static final String TAG = "MyFirebaseMsgService";
 //    @Override
 //    public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -42,6 +43,7 @@ public class FireBaseMsgService extends FirebaseMessagingService {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             start_time = remoteMessage.getData().get("start_time");
              end_time = remoteMessage.getData().get("end_time");
+            address =  remoteMessage.getData().get("address");
 
             Log.d(TAG, "End:Time " + end_time);
         }
@@ -60,6 +62,7 @@ public class FireBaseMsgService extends FirebaseMessagingService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setContentTitle(title)
                 .setContentText(contentText)
+                .setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_fb_happyhours);
         NotificationCompat.InboxStyle inboxStyle =
                 new NotificationCompat.InboxStyle();
@@ -77,29 +80,26 @@ public class FireBaseMsgService extends FirebaseMessagingService {
 //        builder.setStyle(inboxStyle);
 
         Intent intent = new Intent(this,NotificationActivity.class);
+
         intent.putExtra("notificationTitle",title);
         intent.putExtra("body",contentText);
         intent.putExtra("start_time",start_time);
         intent.putExtra("end_time",end_time);
+        intent.putExtra("address",address);
+        intent.setAction(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         // The stack builder object will contain an artificial back stack for the
 // started Activity.
 // This ensures that navigating backward from the Activity leads out of
 // your application to the Home screen.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 // Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(NotificationActivity.class);
-        stackBuilder.addNextIntent(intent);
-        PendingIntent pending = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pending);
 
-
-        Notification notification = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            notification = builder.build();
-        }
-
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(3, notification);
+        notificationManager.notify(3, builder.build());
 
     }
 }

@@ -12,7 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@drawable/food1"
-    tools:context="loginpage.pradeep.loginpage.resturant_Detail">
+    tools:context="loginpage.pradeep.loginpage.Resturant_Detail">
 
 
 

@@ -1,10 +1,8 @@
 package loginpage.pradeep.loginpage;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,16 +13,14 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class menu_Details extends AppCompatActivity {
+public class Menu_Details extends AppCompatActivity {
 
     public RatingBar ratingBar;
     EditText comment;
@@ -129,7 +125,7 @@ public class menu_Details extends AppCompatActivity {
     }
 
     public void refreshRating(JSONObject res){
-        Intent intent = new Intent(this,resturant_Detail.class);
+        Intent intent = new Intent(this,Resturant_Detail.class);
         intent.putExtra("username",uname);
         intent.putExtra("JSON", res.toString());
         intent.putExtra("FLAG", "MENU");

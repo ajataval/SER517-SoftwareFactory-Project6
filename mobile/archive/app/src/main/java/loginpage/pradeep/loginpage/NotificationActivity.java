@@ -22,6 +22,7 @@ public class NotificationActivity extends AppCompatActivity {
         String body = intent.getStringExtra("body");
         String end_time = intent.getStringExtra("end_time");
         String start_time = intent.getStringExtra("start_time");
+        String address = intent.getStringExtra("address");
 
 
         TextView textView = (TextView) findViewById(R.id.notificationTitle);
@@ -29,6 +30,9 @@ public class NotificationActivity extends AppCompatActivity {
 
         TextView textBody = (TextView) findViewById(R.id.body);
         textBody.setText(body);
+
+        TextView adsView = (TextView) findViewById(R.id.address);
+        adsView.setText(address);
 
         TextView start = (TextView) findViewById(R.id.start_time);
         start.setText(start_time);

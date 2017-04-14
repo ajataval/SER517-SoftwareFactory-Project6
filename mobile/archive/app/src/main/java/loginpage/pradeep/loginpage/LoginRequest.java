@@ -100,8 +100,8 @@ public class LoginRequest extends AsyncTask<String, Integer, Void> {
 
                 resultString = "";
                 String line;
-                while ((line = buffer.readLine()) != null) {
-                    resultString += line;
+                if ((line = buffer.readLine()) != null) {
+                    resultString = line;
                 }
 
             } else if(connection.getResponseCode() == 401)  {
@@ -126,7 +126,12 @@ public class LoginRequest extends AsyncTask<String, Integer, Void> {
             }
         }
 
-        loginpage.flag = resultString.contains(tr)+"";
+       // loginpage.flag = resultString.contains(tr)+"";
+
+        if(resultString == null)
+            loginpage.flag = "false";
+        else
+            loginpage.flag = resultString.contains(tr)+"";
 
         return null;
     }

@@ -73,7 +73,7 @@ public class SignUpPage extends AppCompatActivity {
         context = getApplicationContext();
         s = String.valueOf(context.getDatabasePath("Anoop.db"));
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+       // getActionBar().setDisplayHomeAsUpEnabled(true);
 
         first_name = (EditText) findViewById(R.id.firstname);
         last_name = (EditText) findViewById(R.id.lastname);
@@ -106,27 +106,27 @@ public class SignUpPage extends AppCompatActivity {
 
                 //CREATE DB FAV_UNAME
                 Context context = getApplicationContext();
-                String s = String.valueOf(context.getDatabasePath("Anoop.db"));
-                try{
-                    db = getApplicationContext().openOrCreateDatabase(s,MODE_APPEND,null);
-                    db.beginTransaction();
-                    try{
-                        String table_name = "FAV_" + emailID.split("\\@")[0];
-                        String create = "CREATE TABLE if not exists " + table_name + " (" + "HNAME TEXT);";
-                        db.execSQL(create);
-                        db.setTransactionSuccessful();
-                        Toast.makeText(getApplicationContext(), "TABLE CREATED" +  table_name, Toast.LENGTH_LONG).show();
-                    }catch (SQLException e){
-                        System.out.println("SOMETHING WRONG WHILE CREATING");
-                    }
-                    finally {
-                        db.endTransaction();
-                    }
-
-
-                }catch (SQLException e){
-                    System.out.println("SOMETHING WRONG WHILE OPENING");
-                }
+//                String s = String.valueOf(context.getDatabasePath("Anoop.db"));
+//                try{
+//                    db = getApplicationContext().openOrCreateDatabase(s,MODE_APPEND,null);
+//                    db.beginTransaction();
+//                    try{
+//                        String table_name = "FAV_" + emailID.split("\\@")[0];
+//                        String create = "CREATE TABLE if not exists " + table_name + " (" + "HNAME TEXT);";
+//                        db.execSQL(create);
+//                        db.setTransactionSuccessful();
+//                        Toast.makeText(getApplicationContext(), "TABLE CREATED" +  table_name, Toast.LENGTH_LONG).show();
+//                    }catch (SQLException e){
+//                        System.out.println("SOMETHING WRONG WHILE CREATING");
+//                    }
+//                    finally {
+//                        db.endTransaction();
+//                    }
+//
+//
+//                }catch (SQLException e){
+//                    System.out.println("SOMETHING WRONG WHILE OPENING");
+//                }
 
 
 

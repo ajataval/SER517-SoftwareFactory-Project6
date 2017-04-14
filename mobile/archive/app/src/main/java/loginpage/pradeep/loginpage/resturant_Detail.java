@@ -1,19 +1,14 @@
 package loginpage.pradeep.loginpage;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +17,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.android.gms.maps.MapFragment;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
@@ -32,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class resturant_Detail extends AppCompatActivity {
+public class Resturant_Detail extends AppCompatActivity {
 
     String hotelName ;
     String distance ;
@@ -370,7 +364,7 @@ return false;
     }
 
     public void menuDetails(String desc,String dishname,String hname){
-        Intent intent = new Intent(this,menu_Details.class);
+        Intent intent = new Intent(this,Menu_Details.class);
         intent.putExtra("DESC", desc);
         intent.putExtra("DISH", dishname);
         intent.putExtra("HOTEL", hname);

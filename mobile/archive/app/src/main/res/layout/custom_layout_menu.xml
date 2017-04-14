@@ -30,12 +30,15 @@
         android:gravity="right">
 
 
-        <ImageView
-            android:layout_width="125dp"
+        <RatingBar
+            android:layout_below="@+id/rate_me"
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/review"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:stepSize="0.01"
             />
-
 
         
     </LinearLayout>
