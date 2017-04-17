@@ -1,6 +1,7 @@
 package loginpage.pradeep.loginpage;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -104,9 +105,9 @@ public class ActivityPage extends LoginPage {
                                         System.out.println("GETTING HERE INSIDE");
                                         //System.out.println(ans.getClass().getName());
                                         //System.out.println(ans.get(1).getClass().getName());
-                                        for(int i=0;i<ans.length();i++){
-                                            favList.add(ans.get(i).toString());
-                                        }
+//                                        for(int i=0;i<ans.length();i++){
+//                                            favList.add(ans.get(i).toString());
+//                                        }
                                         System.out.println("LIST NEW IN ACTIVITY" + favList );
                                     }catch (JSONException e){
                                         System.out.println("ERR");
@@ -161,7 +162,8 @@ public class ActivityPage extends LoginPage {
 
                 temp.add( new Name_Distance("", ""));
                 setAdapter1(temp);
-                jsonMethod(server_url+"lat="+33.421484+"&long="+-111.922864);
+                server_url+="lat="+latitude+"&long="+longitude;
+                jsonMethod(server_url);
 
 
             }
@@ -180,6 +182,7 @@ public class ActivityPage extends LoginPage {
             public void onProviderDisabled(String s) {
 
                 Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
         };
@@ -213,10 +216,6 @@ public class ActivityPage extends LoginPage {
 
 
 //        final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
-
-
-
-
        // server_url = "http://hungrymeser.herokuapp.com/search?lat="+latitude+"&long="+longitude;
 
 //        JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
@@ -275,56 +274,6 @@ public class ActivityPage extends LoginPage {
         //UNCOMMENT servtext = (TextView) findViewById(R.id.status_textview);
 
 /*
-        JSONObject jso = new JSONObject();
-        try {
-            jso.put("Nombre","Miguel");
-            jso.put("Apellidos", "Garcia");
-            jso.put("Año_nacimiento", 19.90);
-            JSONArray jsa = new JSONArray();
-            JSONObject jsa1 = new JSONObject();
-            jsa1.put("gto","Blur");
-            jsa1.put("rte","Clur");
-            jsa.put(jsa1);
-            jso.put("Nombres_Hijos", jsa);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            System.out.println("NO CREATED");
-            e.printStackTrace();
-        }
-        JSONObject jso1 = new JSONObject();
-        try {
-            jso1.put("Nombre","Miguel");
-            jso1.put("Apellidos", "Garcia");
-            jso1.put("Año_nacimiento", 19.90);
-            JSONArray jsa2 = new JSONArray();
-            JSONObject jsa3 = new JSONObject();
-            jsa3.put("gto","Blur");
-            jsa3.put("rte","Clur");
-            jsa2.put(jsa3);
-            jso.put("Nombres_Hijos", jsa2);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            System.out.println("NO CREATED");
-            e.printStackTrace();
-        }
-        JSONArray j = new JSONArray();
-        j.put(jso);
-        j.put(jso1);
-        String js = j.toString();
-        System.out.println("J TO S  " + js);
-        try{
-            JSONObject obj = new JSONObject(js);
-            System.out.println("*********************");
-            System.out.println("S TO J  " + obj);
-            System.out.println(obj.getClass() + "JSON");
-            //JSONParser parser = new JSONParser();
-            //JSONObject json = (JSONObject) parser.parse(response);
-        }
-        catch (JSONException e){
-            //obj = null;
-            System.out.println("JSON ERROR");
-            e.printStackTrace();
-        }
 */
 
 /*
@@ -363,36 +312,13 @@ public class ActivityPage extends LoginPage {
         );
 */
 
-        //LIST VIEW
-        //
-
-
-
-
-        // String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
-        //        "WebOS","Ubuntu","Windows7","Max OS X"};
-
-
-
-
-        //String[] ma = {"ma","sd"};
-
-
-
-
-
-
-
-
-        // signOutButton = (Button) findViewById(R.id.signOutButton);
-        //signOutButton = (Button) findViewById(R.id.gsignOut);
-
         //  signOutButton.setOnClickListener(this);
     }
 
 
     void jsonMethod(String server_url){
         final RequestQueue requestQueue = Volley.newRequestQueue(ActivityPage.this);
+        System.out.println(server_url + " LAT LONG");
         JsonArrayRequest JARequest = new JsonArrayRequest(Request.Method.GET, server_url, null, new Response.Listener<JSONArray>(){
 
             @Override
@@ -478,7 +404,8 @@ public class ActivityPage extends LoginPage {
         // this code won'textView execute IF permissions are not allowed, because in the line above there is return statement.
 
         //noinspection MissingPermission
-        locationManager.requestLocationUpdates("gps", 50000, 0, listener);
+        locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 50000, 0, listener);
 
 
     }
@@ -516,6 +443,15 @@ public class ActivityPage extends LoginPage {
                                                 try{
                                                   //  System.out.println("ANOOP" + restArray.getJSONObject(i));
                                                     objIntent = restArray.getJSONObject(i);
+
+
+
+                                                    callthis();
+
+
+
+
+
                                                     //hotelName = objIntent.getString("hotelname");
                                                     //distance = Double.toString(objIntent.getDouble("distance"));
                                                     //address = objIntent.getString("address");
@@ -527,11 +463,62 @@ public class ActivityPage extends LoginPage {
                                                 //String resturantName = "WORKING";
 
 //                                            Toast.makeText(getApplicationContext(), Selecteditem, Toast.LENGTH_SHORT).show();
-                                                resturantView(objIntent,usernameSend);
+
 
                                             }
                                         }
         );
+    }
+
+
+
+
+    public void callthis(){
+
+        String url = "http://hungrymeser.herokuapp.com/app/users/" + usernameSend;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET,url,null,
+                        new Response.Listener<JSONObject>(){
+
+                            @Override
+                            public void onResponse(JSONObject res){
+
+                                System.out.println("Success full marked fav");
+                                System.out.println(res);
+                                try{
+                                    JSONArray ans  = res.getJSONArray("favorite");
+                                    System.out.println("GETTING HERE");
+                                    System.out.println(ans.getClass().getName());
+                                    System.out.println(ans.get(1).getClass().getName());
+                                    favList.clear();
+                                    for(int i=0;i<ans.length();i++){
+                                        favList.add(ans.get(i).toString());
+                                    }
+                                    System.out.println("LIST FIRST" + favList );
+                                    resturantView(objIntent,usernameSend);
+                                }catch (JSONException e){
+                                    System.out.println("ERR");
+                                    e.printStackTrace();
+
+                                }
+
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        System.out.println("Something went wrong while geeting");
+                        error.printStackTrace();
+
+                    }
+                }){
+
+        };
+        MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
+
     }
 
     public void resturantView(JSONObject objIntent,String username){
@@ -592,4 +579,12 @@ public class ActivityPage extends LoginPage {
 
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(locationManager != null){
+            //noinspection MissingPermission
+            locationManager.removeUpdates(listener);
+        }
+    }
 }

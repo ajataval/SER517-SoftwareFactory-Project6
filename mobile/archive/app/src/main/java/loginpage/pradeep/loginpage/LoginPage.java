@@ -45,7 +45,7 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
 {
 
 
-
+    String resultString = null;
     private Cursor c;
     //variables used for google login
     SignInButton signInButton;
@@ -226,23 +226,26 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
 
 
 
+    protected Context getContext() {
+        return getApplicationContext();
+    }
 
-
-    protected void  dataBaseStatus()
+    protected void  dataBaseStatus(String val)
     {
-        if(flag.equalsIgnoreCase("serverError"))
+        if(val.contains("server error"))
         {
             Toast.makeText(getApplicationContext(), "Try later", Toast.LENGTH_LONG).show();
 
         }
-        else if(flag.equalsIgnoreCase("true"))
+        else if(val.contains("true"))
         {
             contentPage(uname);
         }
         else
         {
-            Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();
         }
+
     }
 
 }

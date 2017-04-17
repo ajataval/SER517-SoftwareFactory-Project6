@@ -129,7 +129,7 @@ public class Menu_Details extends AppCompatActivity {
         intent.putExtra("username",uname);
         intent.putExtra("JSON", res.toString());
         intent.putExtra("FLAG", "MENU");
-        intent.putExtra("favList", temp);
+        intent.putExtra("favListM", temp);
         //intent.putExtra("distance", distance);
         //intent.putExtra("address" , address);
        startActivity(intent);

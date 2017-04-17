@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,7 +59,7 @@ public class Resturant_Detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resturant__detail);
         Intent intent = getIntent();
-
+        System.out.println("TOKEN"  + IID_TOKEN);
         usernameR = intent.getStringExtra("username");
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -67,14 +68,15 @@ public class Resturant_Detail extends AppCompatActivity {
         final CheckBox fav;
         fav = (CheckBox) findViewById(R.id.fav);
         context = getApplicationContext();
-        s= String.valueOf(context.getDatabasePath("Anoop.db"));
+        //s= String.valueOf(context.getDatabasePath("Anoop.db"));
 
         try{
             String flag = intent.getStringExtra("FLAG");
             JSONObject obj = new JSONObject(intent.getStringExtra("JSON") );
 
             if(flag.equals("MENU")){
-                ArrayList<String> temp = intent.getStringArrayListExtra("favList");
+                ArrayList<String> temp = intent.getStringArrayListExtra("favListM");
+                favList.clear();
                 if(temp.size()>0){
                     for(int i=0;i<temp.size();i++){
                         favList.add(temp.get(i));
@@ -83,9 +85,10 @@ public class Resturant_Detail extends AppCompatActivity {
 
             }
             else{ // BEST  WAY IS TO SEND A GET HERE FOR FAV
+
+                favList.clear();
                 favList = intent.getStringArrayListExtra("favList");
                 System.out.println("LIST IN ONCREATE" + favList );
-
             }
 
 
@@ -144,6 +147,7 @@ public class Resturant_Detail extends AppCompatActivity {
 
                 if(fav.isChecked()){
 
+                    System.out.println("CRASH + " + hotelName );
                     addFav(uname,hotelName);
 
                 }
@@ -270,6 +274,7 @@ return false;
         String url = "http://hungrymeser.herokuapp.com/app/users/" + usernameR + "/favorite";
         //String IID_TOKEN = FirebaseInstanceId.getInstance().getToken();
         JSONObject obj = new JSONObject();
+        favList.add(emailId);
 
         try{
             obj.put("hotel",emailId );
@@ -293,11 +298,10 @@ return false;
                                     System.out.println("GETTING HERE");
                                     System.out.println(ans.getClass().getName());
                                     System.out.println(ans.get(1).getClass().getName());
-                                    for(int i=0;i<ans.length();i++){
-                                        favList.add(ans.get(i).toString());
-                                    }
-                                    System.out.println("LIST " + favList );
-                                }catch (JSONException e){
+
+                                    //addToList(ans);
+
+                                     }catch (JSONException e){
                                     System.out.println("ERR");
                                     e.printStackTrace();
 
@@ -320,6 +324,21 @@ return false;
         MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
     }
 
+
+    public void addToList(JSONArray ans){
+        favList.clear();
+        try{
+
+            for(int i=0;i<ans.length();i++){
+                favList.add(ans.get(i).toString());
+            }
+            System.out.println("LIST after adding" + favList );
+        }catch (JSONException e){
+
+        }
+
+    }
+
     public void removeFav(final String emailId, String hname){
         String url = "http://hungrymeser.herokuapp.com/app/users/" + usernameR + "/favorite?hotel="+emailId+"&registrationToken="+IID_TOKEN;
         JSONObject obj = new JSONObject();
@@ -334,6 +353,7 @@ return false;
         }*/
 
         //System.out.println("body " + obj)  ;
+        favList.remove(emailId);
         System.out.println(IID_TOKEN);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -345,7 +365,16 @@ return false;
 
                                 System.out.println("Success full marked UNfav");
                                 System.out.println(res);
-                                favList.remove(emailId);
+                                try{
+                                    JSONArray ans  = res.getJSONArray("favorite");
+                                    System.out.println("GETTING HERE");
+                                    System.out.println(ans.getClass().getName());
+                                    System.out.println(ans.get(1).getClass().getName());
+                                    //removeFromList(ans);
+
+                                }catch (JSONException e){
+
+                                }
 
 
                             }
@@ -363,6 +392,20 @@ return false;
         MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
     }
 
+    public void removeFromList(JSONArray ans){
+
+        favList.clear();
+        try {
+
+            for(int i=0;i<ans.length();i++){
+                favList.add(ans.get(i).toString());
+            }
+            System.out.println("LIST after removing" + favList );
+
+        }catch (JSONException e){
+
+        }
+    }
     public void menuDetails(String desc,String dishname,String hname){
         Intent intent = new Intent(this,Menu_Details.class);
         intent.putExtra("DESC", desc);
