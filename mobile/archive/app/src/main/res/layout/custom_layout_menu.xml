@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+
     >
 
     <LinearLayout
@@ -18,6 +19,9 @@
             android:id="@+id/name"
             android:padding="10dip"
             android:textSize="16dip"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/Text"
             android:textStyle="bold"/>
 
     </LinearLayout>
@@ -33,6 +37,10 @@
         <RatingBar
             android:layout_below="@+id/rate_me"
             android:id="@+id/ratingBar"
+            android:paddingTop="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"

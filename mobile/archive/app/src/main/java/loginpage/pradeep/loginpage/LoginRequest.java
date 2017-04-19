@@ -37,7 +37,7 @@ import java.net.URLEncoder;
  * Created by pradeepbalakrishnan on 4/1/17.
  */
 
-public class LoginRequest extends AsyncTask<String, Integer, String> {
+public class LoginRequest extends AsyncTask<String, Integer, Void> {
 
     // API values (API will only grab values from Arizona, to reduce information overload)
     private static final String loginUrl ="http://hungrymeser.herokuapp.com/app/login?";
@@ -48,6 +48,7 @@ public class LoginRequest extends AsyncTask<String, Integer, String> {
     private String username;
     private String password;
     private String resultString = "false";
+    private String flag = "false";
 
 
     private ProgressDialog dialog;
@@ -76,7 +77,7 @@ public class LoginRequest extends AsyncTask<String, Integer, String> {
      *                    - null if results were not returned
      */
     @Override
-    protected String doInBackground(String... params) {
+    protected Void doInBackground(String... params) {
 
         // check if the app has access to the internet
         if (ContextCompat.checkSelfPermission(
@@ -139,6 +140,7 @@ public class LoginRequest extends AsyncTask<String, Integer, String> {
 //            }
 //        }
 
+
         final RequestQueue requestQueue = Volley.newRequestQueue(loginPage);
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlString, null, new Response.Listener<JSONObject>(){
             @Override
@@ -146,7 +148,7 @@ public class LoginRequest extends AsyncTask<String, Integer, String> {
 
                 if(response.length()==0){
                     resultString = "false";
-                    loginPage.dataBaseStatus(resultString);
+                    loginPage.dataBaseStatus(resultString,flag);
                 }
                 else{
 
@@ -155,13 +157,26 @@ public class LoginRequest extends AsyncTask<String, Integer, String> {
 
                         if(response.getString("result").equalsIgnoreCase("true")){
                             resultString = "true";
-                            loginPage.dataBaseStatus(resultString);
+                            flag = "true";
+                            if (dialog != null && dialog.isShowing()) {
+                                dialog.dismiss();
+                                }
+                            loginPage.dataBaseStatus(resultString, flag);
                         }
-                        else
+                        else {
+                            flag = "true";
                             resultString = "false";
-
+                            if (dialog != null && dialog.isShowing()) {
+                                dialog.dismiss();
+                            }
+                            loginPage.dataBaseStatus(resultString, flag);
+                        }
                     }catch (JSONException e){
+                        if (dialog != null && dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
                        resultString = "false";
+                        loginPage.dataBaseStatus(resultString, "true");
                     }
                 }
 
@@ -189,26 +204,38 @@ public class LoginRequest extends AsyncTask<String, Integer, String> {
                         e2.printStackTrace();
                     }
                 }
+                else if (response.statusCode == 401)
+                {
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                    resultString = "false";
+                    loginPage.dataBaseStatus(resultString, "true");
+                }
 
             }
+
+
+
+
         });
         requestQueue.add(jsonObjectRequest);
 
 
-        return resultString;
+        return null;
     }
 
-    @Override
-    protected void onPostExecute(String resultString) {
-
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-
-
-
-        loginPage.dataBaseStatus(resultString);
-    }
+//    @Override
+//    protected void onPostExecute(String resultString) {
+//
+//        if (dialog != null && dialog.isShowing()) {
+//            dialog.dismiss();
+//        }
+//
+//
+//
+//        loginPage.dataBaseStatus(resultString,flag);
+//    }
 }
 
 

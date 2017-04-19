@@ -43,7 +43,7 @@ public class FireBaseMsgService extends FirebaseMessagingService {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             start_time = remoteMessage.getData().get("start_time");
              end_time = remoteMessage.getData().get("end_time");
-            address =  remoteMessage.getData().get("address");
+            address =  remoteMessage.getData().get("hoteladdress");
 
             Log.d(TAG, "End:Time " + end_time);
         }
@@ -53,11 +53,11 @@ public class FireBaseMsgService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-        displayNotification(remoteMessage.getNotification().getBody(),remoteMessage.getNotification().getTitle(),end_time,start_time);
+        displayNotification(remoteMessage.getNotification().getBody(),remoteMessage.getNotification().getTitle(),end_time,start_time,address);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void displayNotification(String contentText, String title,String start_time, String end_time){
+    private void displayNotification(String contentText, String title,String start_time, String end_time,String address){
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setContentTitle(title)

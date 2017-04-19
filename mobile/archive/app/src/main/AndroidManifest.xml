@@ -9,35 +9,48 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-library android:name="com.google.android.maps" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <service android:name=".FireBaseMsgService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+
+            </intent-filter>
+        </service>
+        <activity android:name=".NotificationActivity"
+            android:launchMode="standard"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
+            ></activity>
+
         <activity android:name=".ActivityPage" />
-        <activity android:name=".ForgetPassword"
-            android:parentActivityName= ".LoginPage"/>
-        <activity android:name=".SignUpPage"
-            android:parentActivityName= ".LoginPage"/>
-        <activity android:name=".ResetPassword"
-            android:parentActivityName= ".SecurityQuestion"/>
-        <activity android:name=".SecurityQuestion"
-            android:parentActivityName= ".ForgetPassword"/>
+        <activity android:name=".ForgetPassword" />
+        <activity android:name=".SignUpPage" />
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".SecurityQuestion" />
         <activity android:name=".EncryptDec" />
-        <activity android:name=".resturant_Detail"
-            android:parentActivityName= ".ActivityPage"/>
-        <activity android:name=".menu_Details"
-            android:parentActivityName= ".resturant_Detail"></activity>
+        <activity android:name=".Resturant_Detail" />
+        <activity android:name=".Menu_Details" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -46,12 +59,24 @@
             android:value="AIzaSyDKymeBXNeiFWY5jRUejv6zItpmr2MVyQ0" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDv7qmeLziqbTgI7EtYV7hnWe8jrKGbVT0"/>
-    </application>
+            android:value="AIzaSyBl-cVsSnoGMMwMaw1eIlcwUEo-3NMNztM"/>
 
-    <uses-library android:name="com.google.android.maps" />x`
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_fb_happyhours" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+
+    </application>
 
 </manifest>

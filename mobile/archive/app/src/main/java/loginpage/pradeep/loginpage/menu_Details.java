@@ -3,6 +3,7 @@ package loginpage.pradeep.loginpage;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,16 +29,19 @@ public class Menu_Details extends AppCompatActivity {
     String review;
     String dish ;
     String uname;
+    String appUserName;
     ArrayList<String > temp = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__details);
         Intent intent = getIntent();
+        appUserName = intent.getStringExtra("appusername");
         String Description = intent.getStringExtra("DESC");
         temp = intent.getStringArrayListExtra("favList");
         TextView Desc = (TextView) findViewById(R.id.Desc);
         //Desc.setText(Description);
+        Desc.setMovementMethod(new ScrollingMovementMethod());
         Desc.setText(Description);
 
         TextView hname = (TextView) findViewById(R.id.Hname);
@@ -94,6 +98,8 @@ public class Menu_Details extends AppCompatActivity {
         try{
             jsonObj.put("review", rating);
             jsonObj.put("comment", review);
+            jsonObj.put("appUser",appUserName);
+
         }catch (JSONException e){
 
         }
@@ -130,8 +136,10 @@ public class Menu_Details extends AppCompatActivity {
         intent.putExtra("JSON", res.toString());
         intent.putExtra("FLAG", "MENU");
         intent.putExtra("favListM", temp);
+        intent.putExtra("username",appUserName);
         //intent.putExtra("distance", distance);
         //intent.putExtra("address" , address);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
        startActivity(intent);
     }
 }

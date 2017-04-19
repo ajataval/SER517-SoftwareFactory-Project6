@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#f9f9f7"
+    android:background="#fffffe"
     tools:context="loginpage.pradeep.loginpage.LoginPage"
 
     android:weightSum="1">
+
+
+    <ImageView
+        android:layout_width="306dp"
+        android:layout_height="99dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="2dp"
+        app:srcCompat="@drawable/main"
+        android:id="@+id/imageView" />
 
     <LinearLayout
 
@@ -29,7 +38,7 @@
             android:ems="10"
             android:id="@+id/username"
             android:hint="@string/email"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/Text"
             android:layout_marginBottom="5dp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
@@ -75,12 +84,12 @@
             android:layout_gravity="right"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
-            android:background="#dddddddd"
             android:onClick="forgetPassword"
             android:padding="5dp"
-            android:text="forgot password?"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHighlight="@color/colorPrimaryDark"
+            android:textColorLink="#0c49ad"
+            android:text="Forgot password? Click here"
+            android:textColor="@color/Blue"
+            android:textColorHighlight="@color/Text"
 
             />
 
@@ -100,9 +109,12 @@
 
         <Button
             android:text="Login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="42dp"
+            android:background="@drawable/button"
             android:id="@+id/button"
+            android:textColor="@color/white"
+            android:layout_marginRight="5dp"
 
             />
 
@@ -125,11 +137,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHighlight="@color/colorPrimaryDark"
+            android:textColor="@color/Blue"
+            android:textColorHighlight="@color/Text"
             android:text="New user? SignUp now"
             android:onClick="signUpUser"
-            android:background="#dddddddd"
             android:padding="5dp"
 
 

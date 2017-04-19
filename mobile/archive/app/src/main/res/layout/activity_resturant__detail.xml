@@ -1,79 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_resturant__detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     android:orientation="vertical"
-    android:background="@drawable/food1"
+    android:background="#ffffff"
+    android:gravity="center"
     tools:context="loginpage.pradeep.loginpage.Resturant_Detail">
 
-
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:gravity="right"
+        android:layout_weight="0.1"
+        android:layout_marginBottom="1px"
+        android:orientation="vertical"
+        android:background="@drawable/bannerfinal"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f7f4f5"
+        android:orientation="vertical"
+        >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_weight="0.2"
-        android:layout_marginBottom="1px"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+
         >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="222dp"
-                android:layout_height="wrap_content"
-                android:text="HOTEL NAME"
-                android:textStyle="bold"
-                android:textSize="28dp"
-                android:textAlignment="center"
-                android:background="#f7f4f5"
-                android:id="@+id/Hname"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:text="Mark as fav??"
-                    android:background="#f7f4f5"
-                    />
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/fav"
-                    android:background="#f7f4f5"/>
-
-            </LinearLayout>
+        <TextView
+            android:layout_width="311dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/Text"
+            android:text="HotelName"
 
 
-        </LinearLayout>
+            android:textAlignment="center"
+            android:id="@+id/Hname"/>
 
+        <ImageView
+            android:layout_width="8sp"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:id="@+id/fav"
+            android:layout_weight="1"
+            android:background="#f7f4f5"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="8sp"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:id="@+id/map_pointer"
+            android:layout_weight="1"
+            android:src="@drawable/map_pointer"
+            android:onClick="googleMaps"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="261dp"
             android:layout_height="wrap_content"
-            android:text="ADDRESS"
-            android:textStyle="bold"
-            android:background="#f7f4f5"
-            android:id="@+id/Address"/>
+            android:text="Address"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:textColor="@color/Text"
+            android:id="@+id/Address"
+            android:layout_weight="0.15"
+            android:onClick="googleMaps"/>
+
+
 
 
     </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -87,7 +105,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:background="#f7f4f5"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:textColor = "@color/Text"
+
+
+            android:background="@drawable/listview"
             >
         </ListView>
 

@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -162,8 +163,9 @@ public class ActivityPage extends LoginPage {
 
                 temp.add( new Name_Distance("", ""));
                 setAdapter1(temp);
-                server_url+="lat="+latitude+"&long="+longitude;
-                jsonMethod(server_url);
+                restArrayList.clear();
+                String url = server_url+"lat="+latitude+"&long="+longitude;
+                jsonMethod(url);
 
 
             }
@@ -313,6 +315,17 @@ public class ActivityPage extends LoginPage {
 */
 
         //  signOutButton.setOnClickListener(this);
+
+        final ImageView rec;
+        rec = (ImageView) findViewById(R.id.rec);
+        rec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "CLICKED ON REC", Toast.LENGTH_LONG).show();
+                rec.setImageResource(R.drawable.toppicks);
+                recommendMe();
+            }
+        });
     }
 
 
@@ -357,6 +370,8 @@ public class ActivityPage extends LoginPage {
                 else
                 {
                     Toast.makeText(getApplicationContext(), "Item not found", Toast.LENGTH_LONG).show();
+                    jsonMethod("http://hungrymeser.herokuapp.com/search?"+"lat="+latitude+"&long="+longitude);
+
                 }
 
             }
@@ -499,7 +514,7 @@ public class ActivityPage extends LoginPage {
                                     resturantView(objIntent,usernameSend);
                                 }catch (JSONException e){
                                     System.out.println("ERR");
-                                    e.printStackTrace();
+                                    resturantView(objIntent,usernameSend);
 
                                 }
 
@@ -527,6 +542,9 @@ public class ActivityPage extends LoginPage {
         intent.putExtra("JSON", objIntent.toString());
         intent.putExtra("FLAG", "ACTIVITY");
         intent.putStringArrayListExtra("favList",favList);
+        intent.putExtra("lat",latitude.toString());
+        intent.putExtra("long",longitude.toString());
+        intent.putExtra("appusername",username);
 
         // intent.putExtra("hotelName", hotelName);
         //intent.putExtra("distance", distance);
@@ -539,7 +557,7 @@ public class ActivityPage extends LoginPage {
         searchValue = (EditText) findViewById(R.id.search_bar);
         searchVal = searchValue.getText().toString();
         if(!searchVal.equals("")){
-            String url = server_url+"&"+selectedSearch+"="+searchVal;
+            String url = server_url+"lat="+latitude+"&long="+longitude+"&"+selectedSearch+"="+searchVal;
             restArrayList.clear();
             jsonMethod(url);
         }else if(selectedSearch.equalsIgnoreCase("cuisine"))
@@ -555,8 +573,12 @@ public class ActivityPage extends LoginPage {
     //when clicked on banner
 
     public void reloadMenu(View view){
+        ImageView rec;
+        rec = (ImageView) findViewById(R.id.rec);
         restArrayList.clear();
-        jsonMethod(server_url);
+        rec.setImageResource(R.drawable.rec);
+        System.out.println("lat="+latitude+"&long="+longitude);
+        jsonMethod(server_url+"lat="+latitude+"&long="+longitude);
 
     }
 
@@ -586,5 +608,14 @@ public class ActivityPage extends LoginPage {
             //noinspection MissingPermission
             locationManager.removeUpdates(listener);
         }
+    }
+
+
+    //recommendation page
+
+    public void recommendMe(){
+        String urlR = "http://hungrymeser.herokuapp.com/app/users/" + usernameSend + "/recommend?lat=" + latitude + "&long=" + longitude;
+        restArrayList.clear();
+        jsonMethod(urlR);
     }
 }

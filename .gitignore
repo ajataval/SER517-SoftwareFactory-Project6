@@ -40,5 +40,12 @@ Nodeclipse files
 .project
 .metadata
 RemoteSystemsTempFiles
-.idea
+*.iml
 .gradle
+mobile/archive/local.properties
+mobile/archive/.idea/workspace.xml
+mobile/archive/.idea/libraries
+.DS_Store
+mobile/archive/build
+mobile/archive/captures
+.externalNativeBuild

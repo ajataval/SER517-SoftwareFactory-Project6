@@ -6,9 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +18,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Resturant_Detail extends AppCompatActivity {
+public class Resturant_Detail extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     String hotelName ;
     String distance ;
@@ -52,28 +59,58 @@ public class Resturant_Detail extends AppCompatActivity {
     String appuser;
     String IID_TOKEN = FirebaseInstanceId.getInstance().getToken();
     ArrayList<String> favList = new ArrayList<String>();
+    String lat;
+    String lon;
+    String appUserName;
     //JSONObject obj;
+
+    //for maps
+
+    String placeId;
+    GoogleApiClient mGoogleApiClient;
+    private static final String TAG = "SigninActivity";
+    Double dlat;
+    Double dlong;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resturant__detail);
         Intent intent = getIntent();
-        System.out.println("TOKEN"  + IID_TOKEN);
+        lat = intent.getStringExtra("lat");
+        lon = intent.getStringExtra("long");
+        //  System.out.println("TOKEN"  + IID_TOKEN);
         usernameR = intent.getStringExtra("username");
+        appUserName = intent.getStringExtra("username");
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //google map
+
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(this, this)
+                .build();;
 
 
-        final CheckBox fav;
-        fav = (CheckBox) findViewById(R.id.fav);
+        boolean flagRatingBar = false;
+        //final CheckBox fav;
+        //fav = (CheckBox) findViewById(R.id.fav);
+        // final RatingBar fav;
+        // fav = (RatingBar) fin
+        //
+        // dViewById(R.id.fav);
+        final ImageView fav;
+        fav = (ImageView) findViewById(R.id.fav);
         context = getApplicationContext();
         //s= String.valueOf(context.getDatabasePath("Anoop.db"));
 
         try{
             String flag = intent.getStringExtra("FLAG");
             JSONObject obj = new JSONObject(intent.getStringExtra("JSON") );
-
+            placeId = obj.getString("place_id");
             if(flag.equals("MENU")){
                 ArrayList<String> temp = intent.getStringArrayListExtra("favListM");
                 favList.clear();
@@ -92,14 +129,14 @@ public class Resturant_Detail extends AppCompatActivity {
             }
 
 
-            System.out.println(obj + " REST");
+            // System.out.println(obj + " REST");
             hotelName = obj.getString("hotelname");
-           // distance = obj.getString("distance") + " mi";
+            // distance = obj.getString("distance") + " mi";
             address = obj.getString("address");
             //openNow = obj.getString("openNow");
             menu = obj.getJSONArray("menu");
             uname = obj.getString("username");
-           // System.out.println(menu.length()+ "ANOOP" + menu.getJSONObject(0)) ;
+            // System.out.println(menu.length()+ "ANOOP" + menu.getJSONObject(0)) ;
 
 
 
@@ -117,8 +154,8 @@ public class Resturant_Detail extends AppCompatActivity {
             Collections.sort(dishArrayList,new MyComparator());
 
             for(int i =0; i<dishArrayList.size() ;i++){
-                        descList.add(dishArrayList.get(i).getDescription());
-                        }
+                descList.add(dishArrayList.get(i).getDescription());
+            }
 
 
         }catch (JSONException e){
@@ -130,14 +167,108 @@ public class Resturant_Detail extends AppCompatActivity {
         if(isfav(uname))//PRESENT IN DB
         {
             System.out.println("CHECKING TRUE");
-            fav.setChecked(true);
+            //fav.setChecked(true);
+            //fav.setRating(1.0f);
+            fav.setImageResource(R.drawable.fav);
+            //fav.setEnabled(true);
             favRest = true;
         }
         else{
             System.out.println("CHECKING FALSE");
-            fav.setChecked(false);
+            //fav.setChecked(false);
+            //fav.setRating(0.0f);
+            fav.setImageResource(R.drawable.unfav);
+            //fav.setEnabled(true);
             favRest = false;
         }
+
+
+
+
+//        fav.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (event.getAction() == MotionEvent.ACTION_UP) {
+//
+//                    fav.setRating(1.0f);
+//                    addFav(uname,hotelName);
+//
+//                }
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//
+//                    fav.setRating(0f);
+//                    System.out.println("CRASH + " + hotelName );
+//                    removeFav(uname,hotelName);
+//
+//                }
+//
+//                if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+//                    v.setPressed(false);
+//                }
+//
+//
+//
+//
+//                return true;
+//            }});
+
+
+
+//        fav.setOnTouchListener(new View.OnTouchListener() {
+//                                   @Override
+//                                   public boolean onTouch(View v, MotionEvent event) {
+//                                       favRest = !favRest;
+//                                       if(favRest)
+//                                        {
+//                                            fav.setRating(1f);
+//                                            fav.setEnabled(true);
+//                                           // TODO perform your action here
+//                                           addFav(uname,hotelName);
+//
+//                                       }
+//                                       else {
+//
+//
+//                                           fav.setRating(0f);
+//                                           fav.setEnabled(true);
+//                                           System.out.println("CRASH + " + hotelName );
+//                                           removeFav(uname,hotelName);
+//
+//
+//                                       }
+//                                       return true;
+//                                   }
+//                               });
+
+
+
+//        fav.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+//
+//            // Called when the user swipes the RatingBar
+//            @Override
+//            public void onRatingChanged(RatingBar fav, float rating, boolean fromUser) {
+//                favRest = !favRest;
+//
+//
+//                if(favRest)
+//                { //fav.isChecked()
+//                    fav.setRating(1.0f);
+//                    fav.setEnabled(false);
+//                    System.out.println("CRASH + " + hotelName );
+//
+//                    addFav(uname,hotelName);
+//
+//                }
+//                else{
+//                    System.out.println("THIS SHOUDL HAVE WORKED");
+//                    fav.setRating(0.0f);
+//                    fav.setEnabled(false);
+//                    removeFav(uname,hotelName);
+//
+//                }
+//            }
+//        });
+
 
 
         fav.setOnClickListener(new View.OnClickListener(){
@@ -145,14 +276,22 @@ public class Resturant_Detail extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),  "CLICKED",Toast.LENGTH_LONG).show();
                 favRest = !favRest;
 
-                if(fav.isChecked()){
 
-                    System.out.println("CRASH + " + hotelName );
+                if(favRest)
+                { //fav.isChecked()
+                    //fav.setRating(1f);
+                    //fav.setEnabled(true);
+                    fav.setImageResource(R.drawable.fav);
+                    System.out.println("PRESENT IN FAV + " + hotelName );
+
                     addFav(uname,hotelName);
 
                 }
                 else{
-
+                    System.out.println("NOT IN FAV");
+                    //fav.setRating(0);
+                    //fav.setEnabled(true);
+                    fav.setImageResource(R.drawable.unfav);
                     removeFav(uname,hotelName);
 
                 }
@@ -168,13 +307,13 @@ public class Resturant_Detail extends AppCompatActivity {
             array[i] = menuList.get(i);
         }
 
-       // System.out.println("BEFORE" + dishArrayList);
+        // System.out.println("BEFORE" + dishArrayList);
 
 
         //SORT JSON OBJECT AND RECREATE THOSE LIST
 
 
-      //  System.out.println("AFTER" + dishArrayList);
+        //  System.out.println("AFTER" + dishArrayList);
         adapter = new MyAdapter(this, dishArrayList);
         listView = (ListView) findViewById(R.id.menu_list);
         listView.setAdapter(adapter);
@@ -206,59 +345,49 @@ public class Resturant_Detail extends AppCompatActivity {
         TextView HAddress = (TextView) findViewById(R.id.Address);
         HAddress.setText(address);
 
-        HAddress.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-
-                    maps();
-                }
-        });
-
-
-
-
-/*
-        TextView rName = (TextView) findViewById(R.id.HNAME);
-        rName.setText(hotelName );
-
-        TextView rADDRESS = (TextView) findViewById(R.id.ADDRESS);
-        rADDRESS.setText(address );
-        */
-
+//        HAddress.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View view){
+//
+//                maps();
+//            }
+//        });
 
     }
 
 
 
-    /*
-    public boolean selectFromDb(){
+
+
+    public void maps(View view){
         try{
-            db = getApplicationContext().openOrCreateDatabase(s, MODE_APPEND,null);
-            db.beginTransaction();
-            String table_name = "FAV_" + usernameR.split("\\@")[0];
-            db.execSQL("SELECT FROM " + table_name + " WHERE " + "HNAME" + "= '" + hotelName + "'") ;
-            Toast.makeText(getApplicationContext(), "SELECTED AFTER CLICKING" + table_name, Toast.LENGTH_LONG).show();
-            System.out.println("DELETED AFTER CLICKING" + table_name);
-            return  true;
+            Places.GeoDataApi.getPlaceById(mGoogleApiClient, placeId)
+                    .setResultCallback(new ResultCallback<PlaceBuffer>() {
+                        @Override
+                        public void onResult(PlaceBuffer places) {
+                            if (places.getStatus().isSuccess()) {
+                                final Place myPlace = places.get(0);
+                                LatLng queriedLocation = myPlace.getLatLng();
+                                dlat  = queriedLocation.latitude;
+                                dlong = queriedLocation.longitude;
+                                plotMap(dlat,dlong);
+                            }
+                            else{
+                                Log.v("LAT LONG", "" + "FAILED");
 
-        }catch (SQLException e){
+                            }
+                            places.release();
+                            System.out.println("IN PLACES");
+                        }
+                    });
+        }catch (Exception e){
+            System.out.println("ERROR IN PLACES");
+            e.printStackTrace();
 
-            System.out.println("SOMETHING WENT WRONG WHILE SELECTING");
-            return false;
-        }finally {
-            db.endTransaction();
         }
-
-    }
-*/
-
-    public void maps(){
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?saddr=33.418330,-111.934835&daddr=33.419529,-111.919417"));
-        startActivity(intent);
     }
 
     public boolean isfav(String uname){
-        System.out.println("HOTEL NAME IS " + uname);
+        System.out.println("INSIDE IS FAV " + uname);
         System.out.println(favList);
         for(int i=0;i<favList.size();i++){
             if(favList.get(i).equals(uname)){
@@ -267,11 +396,11 @@ public class Resturant_Detail extends AppCompatActivity {
             }
 
         }
-return false;
+        return false;
     }
 
     public void addFav(String emailId,String appname){
-        String url = "http://hungrymeser.herokuapp.com/app/users/" + usernameR + "/favorite";
+        String url = "http://hungrymeser.herokuapp.com/app/users/" + appUserName + "/favorite";
         //String IID_TOKEN = FirebaseInstanceId.getInstance().getToken();
         JSONObject obj = new JSONObject();
         favList.add(emailId);
@@ -295,13 +424,13 @@ return false;
                                 System.out.println(res);
                                 try{
                                     JSONArray ans  = res.getJSONArray("favorite");
-                                    System.out.println("GETTING HERE");
-                                    System.out.println(ans.getClass().getName());
-                                    System.out.println(ans.get(1).getClass().getName());
+                                    // System.out.println("GETTING HERE");
+                                    // System.out.println(ans.getClass().getName());
+                                    // System.out.println(ans.get(1).getClass().getName());
 
-                                    //addToList(ans);
+                                    // addToList(ans);
 
-                                     }catch (JSONException e){
+                                }catch (JSONException e){
                                     System.out.println("ERR");
                                     e.printStackTrace();
 
@@ -340,7 +469,7 @@ return false;
     }
 
     public void removeFav(final String emailId, String hname){
-        String url = "http://hungrymeser.herokuapp.com/app/users/" + usernameR + "/favorite?hotel="+emailId+"&registrationToken="+IID_TOKEN;
+        String url = "http://hungrymeser.herokuapp.com/app/users/" + appUserName + "/favorite?hotel="+emailId+"&registrationToken="+IID_TOKEN;
         JSONObject obj = new JSONObject();
         //String IID_TOKEN = FirebaseInstanceId.getInstance().getToken();
 
@@ -354,7 +483,7 @@ return false;
 
         //System.out.println("body " + obj)  ;
         favList.remove(emailId);
-        System.out.println(IID_TOKEN);
+        // System.out.println(IID_TOKEN);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.DELETE,url,obj,
@@ -367,9 +496,9 @@ return false;
                                 System.out.println(res);
                                 try{
                                     JSONArray ans  = res.getJSONArray("favorite");
-                                    System.out.println("GETTING HERE");
-                                    System.out.println(ans.getClass().getName());
-                                    System.out.println(ans.get(1).getClass().getName());
+                                    //System.out.println("GETTING HERE");
+                                    //System.out.println(ans.getClass().getName());
+                                    //System.out.println(ans.get(1).getClass().getName());
                                     //removeFromList(ans);
 
                                 }catch (JSONException e){
@@ -413,9 +542,51 @@ return false;
         intent.putExtra("HOTEL", hname);
         intent.putExtra("UNAME",uname);
         intent.putExtra("favList", favList);
+        intent.putExtra("appusername",appUserName);
         // intent.putExtra("hotelName", hotelName);
         //intent.putExtra("distance", distance);
         //intent.putExtra("address" , address);
         startActivity(intent);
+    }
+    public void onConnectionFailed(ConnectionResult connectionResult){
+        Log.d(TAG, "onConnectionFailed:" + connectionResult );
+    }
+
+
+    public void plotMap(double dlat,double dlong){
+        System.out.println("INSIDE MAPS" + dlat + "" + dlong);
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?saddr="+lat+","+ lon +"&daddr=" + dlat + "," + dlong));
+        System.out.println("INSIDE MAPS" + dlat + "" + dlong);
+        startActivity(intent);
+
+    }
+
+    public void googleMaps(View view) {
+        try{
+            Places.GeoDataApi.getPlaceById(mGoogleApiClient, placeId)
+                    .setResultCallback(new ResultCallback<PlaceBuffer>() {
+                        @Override
+                        public void onResult(PlaceBuffer places) {
+                            if (places.getStatus().isSuccess()) {
+                                final Place myPlace = places.get(0);
+                                LatLng queriedLocation = myPlace.getLatLng();
+                                dlat  = queriedLocation.latitude;
+                                dlong = queriedLocation.longitude;
+                                plotMap(dlat,dlong);
+                            }
+                            else{
+                                Log.v("LAT LONG", "" + "FAILED");
+
+                            }
+                            places.release();
+                            System.out.println("IN PLACES");
+                        }
+                    });
+        }catch (Exception e){
+            System.out.println("ERROR IN PLACES");
+            e.printStackTrace();
+
+        }
     }
 }

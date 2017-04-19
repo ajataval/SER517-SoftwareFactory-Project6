@@ -1,5 +1,6 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="Text">#000000</color>
     <color name="colorPrimaryDark">#141415</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorText">#fafafa</color>
@@ -7,4 +8,6 @@
     <color name="gold">#f4e802</color>
     <color name="white">#ffffff</color>
     <color name="borderColor">#000000 </color>
+    <color name="Blue">#0c49ad</color>
+    <color name="ButtonBlue">#306b9b</color>
 </resources>

@@ -6,104 +6,180 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-
-    android:background="@drawable/food1"
+    android:paddingTop="0dp"
+    android:layout_marginTop="0dp"
+    android:background="#fffffe"
     tools:context="loginpage.pradeep.loginpage.SignUpPage"
-    android:weightSum="1">
+    >
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
 
-        <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:background="@drawable/bannerfinal"
+
+            />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Signup for Hungry Me !!"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/Text"
+
+            />
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/border"
             android:inputType="text"
             android:ems="10"
             android:id="@+id/firstname"
             android:hint="@string/firstname"
             android:textColor="@color/colorPrimaryDark"
-            android:background="#f7f4f5"
+
 
             />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/border"
             android:inputType="text"  android:layout_margin="10dp"
             android:ems="10"
             android:id="@+id/lastname"
             android:hint="@string/lastname"
             android:textColor="@color/colorPrimaryDark"
-            android:background="#f7f4f5"
+
 
             />
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/border"
             android:inputType="textEmailAddress"
             android:layout_margin="10dp"
             android:ems="10"
             android:id="@+id/email"
             android:hint="@string/email"
             android:textColor="@color/colorPrimaryDark"
-            android:background="#f7f4f5"
+
 
             />
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/border"
             android:layout_margin="10dp"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/password"
             android:hint="@string/password"
             android:textColor="@color/colorPrimaryDark"
-            android:background="#f7f4f5"
+
 
             />
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/border"
             android:inputType="textPassword"
             android:layout_margin="10dp"
             android:ems="10"
             android:id="@+id/confpassword"
             android:hint="@string/confirmpassword"
             android:textColor="@color/colorPrimaryDark"
-            android:background="#f7f4f5"
+
 
             />
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/border"
             android:inputType="phone"
             android:layout_margin="10dp"
             android:ems="10"
             android:id="@+id/phoneNumber"
             android:hint ="Phone Number"
             android:textColor="@color/colorPrimaryDark"
-            android:background="#f7f4f5"/>
+            />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/border"
             android:inputType="text"
             android:layout_margin="10dp"
             android:ems="10"
             android:id="@+id/secquest1"
-            android:hint ="What is your fav food"
+            android:hint ="What is your favorite food??"
             android:textColor="@color/colorPrimaryDark"
 
-            android:background="#f7f4f5"
             />
 
         <Button
             android:text="Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/button"
 
             android:id="@+id/confirmsignUp"
             />

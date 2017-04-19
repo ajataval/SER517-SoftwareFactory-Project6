@@ -52,25 +52,6 @@ public class MyAdapter extends ArrayAdapter<Name_Review> {
         labelView.setText(itemsArrayList.get(position).getTitle());
 
 
-//        if(rating == 1.0){
-//            valueView.setImageResource(R.drawable.rating1);
-//        }
-//        else if(rating == 2.0){
-//            valueView.setImageResource(R.drawable.rating2);
-//        }
-//        else if(rating == 3.0){
-//            valueView.setImageResource(R.drawable.rating3);
-//        }
-//        else if(rating == 4.0){
-//            valueView.setImageResource(R.drawable.rating4);
-//        }
-//        else if(rating == 5.0){
-//            valueView.setImageResource(R.drawable.rating5);
-//        }
-//        else{
-//            valueView.setImageResource(R.drawable.rating1);
-//        }
-
 
 
         // 5. retrn rowView

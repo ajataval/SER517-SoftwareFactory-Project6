@@ -230,20 +230,20 @@ public class LoginPage extends AppCompatActivity implements GoogleApiClient.OnCo
         return getApplicationContext();
     }
 
-    protected void  dataBaseStatus(String val)
+    protected void  dataBaseStatus(String val, String flag)
     {
-        if(val.contains("server error"))
+        if(val.contains("server error") && flag == "true")
         {
             Toast.makeText(getApplicationContext(), "Try later", Toast.LENGTH_LONG).show();
 
         }
-        else if(val.contains("true"))
+        else if(val.contains("true") && flag == "true" )
         {
             contentPage(uname);
         }
-        else
+        else if(val.contains("false") && flag == "true")
         {
-           // Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();
         }
 
     }

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">HungryMe1stIteration</string>
     <string name="email">Email</string>
-    <string name="firstname">FirstName</string>
-    <string name="lastname">LastName</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
     <string name="password">Password</string>
     <string name="confirmpassword">Confirm Password</string>
-    <string name="send">send</string>
+    <string name="send">Reset</string>
     <string name="sign_out">Sign Out</string>
     <string name="disconnect">disconnect</string>
     <string name="loading">Loading…</string>
