@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class Menu_Details extends AppCompatActivity {
@@ -76,7 +83,15 @@ public class Menu_Details extends AppCompatActivity {
                 rating = Double.toString(ratingBar.getRating());
                 review = comment.getText().toString();
                 System.out.println(review + "  WRITE THIS  " + rating);
-                postToServer(review,rating);
+                try {
+                    postToServer(review,rating);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
 
             }
         });;
@@ -89,10 +104,25 @@ public class Menu_Details extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
     }
 
-    public void postToServer(String review,String rating){
+    public void postToServer(String review,String rating) throws UnsupportedEncodingException, MalformedURLException, URISyntaxException {
 
 
-        String serverUrl = "http://hungrymeser.herokuapp.com/hotel/users/" + uname + "/menu/" + dish ;
+       // dish.replace(" ","%20");
+        String serverUrl = "http://hungrymeser.herokuapp.com/hotel/users/" + uname + "/menu/" + dish;
+
+        URL url = null;
+
+            url = new URL(serverUrl);
+
+        URI uri = null;
+
+            uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
+
+
+            url = uri.toURL();
+
+        Log.d("ServerUrl",url.toString());
+
         JSONObject jsonObj = new JSONObject();
 
         try{
@@ -105,7 +135,7 @@ public class Menu_Details extends AppCompatActivity {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.PUT,serverUrl,jsonObj,
+                (Request.Method.PUT,url.toString(),jsonObj,
                         new Response.Listener<JSONObject>(){
 
                             @Override

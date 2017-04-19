@@ -111,7 +111,9 @@ public class Resturant_Detail extends AppCompatActivity implements GoogleApiClie
             String flag = intent.getStringExtra("FLAG");
             JSONObject obj = new JSONObject(intent.getStringExtra("JSON") );
             placeId = obj.getString("place_id");
+
             if(flag.equals("MENU")){
+                //CLEARS FAV LIST AND FILLS IT WITH INTENT OBJECT FROM MENU DETAILS PAGE
                 ArrayList<String> temp = intent.getStringArrayListExtra("favListM");
                 favList.clear();
                 if(temp.size()>0){
@@ -122,7 +124,7 @@ public class Resturant_Detail extends AppCompatActivity implements GoogleApiClie
 
             }
             else{ // BEST  WAY IS TO SEND A GET HERE FOR FAV
-
+                //CLEARS FAV LIST AND FILLS IT WITH INTENT OBEJCT FROM ACTIVITY PAGE
                 favList.clear();
                 favList = intent.getStringArrayListExtra("favList");
                 System.out.println("LIST IN ONCREATE" + favList );
@@ -453,20 +455,20 @@ public class Resturant_Detail extends AppCompatActivity implements GoogleApiClie
         MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
     }
 
-
-    public void addToList(JSONArray ans){
-        favList.clear();
-        try{
-
-            for(int i=0;i<ans.length();i++){
-                favList.add(ans.get(i).toString());
-            }
-            System.out.println("LIST after adding" + favList );
-        }catch (JSONException e){
-
-        }
-
-    }
+//
+//    public void addToList(JSONArray ans){
+//        favList.clear();
+//        try{
+//
+//            for(int i=0;i<ans.length();i++){
+//                favList.add(ans.get(i).toString());
+//            }
+//            System.out.println("LIST after adding" + favList );
+//        }catch (JSONException e){
+//
+//        }
+//
+//    }
 
     public void removeFav(final String emailId, String hname){
         String url = "http://hungrymeser.herokuapp.com/app/users/" + appUserName + "/favorite?hotel="+emailId+"&registrationToken="+IID_TOKEN;
@@ -521,20 +523,20 @@ public class Resturant_Detail extends AppCompatActivity implements GoogleApiClie
         MySingleTon.getInstance(this).addToReqQue(jsonObjectRequest);
     }
 
-    public void removeFromList(JSONArray ans){
-
-        favList.clear();
-        try {
-
-            for(int i=0;i<ans.length();i++){
-                favList.add(ans.get(i).toString());
-            }
-            System.out.println("LIST after removing" + favList );
-
-        }catch (JSONException e){
-
-        }
-    }
+//    public void removeFromList(JSONArray ans){
+//
+//        favList.clear();
+//        try {
+//
+//            for(int i=0;i<ans.length();i++){
+//                favList.add(ans.get(i).toString());
+//            }
+//            System.out.println("LIST after removing" + favList );
+//
+//        }catch (JSONException e){
+//
+//        }
+//    }
     public void menuDetails(String desc,String dishname,String hname){
         Intent intent = new Intent(this,Menu_Details.class);
         intent.putExtra("DESC", desc);

@@ -9,6 +9,7 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+
     <uses-library android:name="com.google.android.maps" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -50,6 +51,12 @@
         <activity android:name=".EncryptDec" />
         <activity android:name=".Resturant_Detail" />
         <activity android:name=".Menu_Details" />
+
+        <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+            package="com.google.android.gms.location.sample.locationupdates" >
+
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        </manifest>
 
         <meta-data
             android:name="com.google.android.gms.version"
